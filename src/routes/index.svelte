@@ -6,9 +6,9 @@
 			provider: 'google'
 		});
 
-		console.log({user});
-		console.log({session});
-		console.log({error})
+		if (error) {
+		   console.log({error})
+		}
 
 		/* const { error } = await supabase.auth.signOut(); */
 		/* /1* console.log({error}) *1/ */
@@ -20,7 +20,7 @@
 </svelte:head>
 
 <main class="flex justify-center items-center h-screen w-screen">
-	<button class="bg-blue-500 text-white px-10 py-3 rounded-md" on:click={signin}
+<button class="bg-blue-500 text-white px-10 py-3 rounded-md" on:click={signin}
 		>continue with google</button
 	>
 </main>
