@@ -6,8 +6,10 @@ supabase.auth.onAuthStateChange((event, session) => {
 	if (event == 'SIGNED_IN') {
 		user.set(session.user);
 	} else if (event == 'SIGNED_OUT') {
-		user.set(session.user);
+		user.set(null);
+	} else if (event == 'USER_UPDATED') {
+		user.update((user) => user);
 	}
 });
 
-export const user = writable(supabase.auth.session().user);
+export const user = writable({});

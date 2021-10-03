@@ -2,19 +2,11 @@
 	import supabase from '$lib/utils/db';
 
 	async function signin() {
-		const { user, session, error } = await supabase.auth.signIn({
+		const { error } = await supabase.auth.signIn({
 			provider: 'google'
 		});
 
-		if (error) {
-			console.log({ error });
-		}
-
-		console.log({ user });
-		console.log({ session });
-
-		/* const { error } = await supabase.auth.signOut(); */
-		/* /1* console.log({error}) *1/ */
+		console.log({ error });
 	}
 </script>
 

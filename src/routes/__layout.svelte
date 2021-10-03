@@ -1,7 +1,3 @@
-<script context="module">
-	export const ssr = false;
-</script>
-
 <script lang="ts">
 	import '../app.postcss';
 
@@ -16,4 +12,3 @@
 
 <slot />
 
-<pre>{JSON.stringify($user,null,2)}</pre>

@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@supabase/supabase-js": "^1.8.0",
 		"@sveltejs/kit": "next",
+		"@types/cookie": "^0.4.1",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
 		"@typescript-eslint/parser": "^4.19.0",
 		"autoprefixer": "^10.3.4",
@@ -34,6 +35,7 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^1.22.6",
-		"@sveltejs/adapter-vercel": "^1.0.0-next.30"
+		"@sveltejs/adapter-vercel": "^1.0.0-next.30",
+		"cookie": "^0.4.1"
 	}
 }
