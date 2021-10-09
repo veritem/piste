@@ -1,11 +1,10 @@
-import type { ServerResponse } from '@sveltejs/kit/types/hooks';
-import supabase from '$lib/utils/db';
+import type { Session } from '@supabase/supabase-js';
+import type { ServerRequest, ServerResponse } from '@sveltejs/kit/types/hooks';
 
-export async function post(): Promise<ServerResponse> {
-	const { session } = await supabase.auth.signIn({
-		provider: 'google'
-	});
-
+export async function post(request: ServerRequest): Promise<ServerResponse> {
+	console.log(request.body);
+	// const session: Session | null = (request.body.toString() as (Session | null);
+	let session: Session;
 	return {
 		status: 200,
 		body: 'success',

@@ -1,5 +1,5 @@
 <script context="module">
-	export async function load({ session}) {
+	export async function load({ session }) {
 		if (session) {
 			return {
 				status: 302,
@@ -11,17 +11,24 @@
 </script>
 
 <script>
-	
 	import { goto } from '$app/navigation';
+	import supabase from '$lib/utils/db';
 
-	async function signin() {	
-	let response = await fetch('/auth', { 
-		 	method: 'POST', 
-		}); 
+	async function signin() {
+		const { session,user } = await supabase.auth.signIn({
+			provider: 'google'
+		});
 
-		if (response.ok) { 
-		 	goto('/app'); 
-		} 
+		console.log({session,user})
+
+		let response = await fetch('/auth', {
+			method: 'POST',
+			body: JSON.stringify({ session })
+		});
+
+		if (response.ok) {
+			goto('/app');
+		}
 	}
 </script>
 

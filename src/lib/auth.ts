@@ -1,17 +1,17 @@
-// import type { Request } from '@sveltejs/kit';
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
 
-// export async function post(request: Request) {
-// 	const user_session = request.body.get('session');
+/* eslint-disable */
+export async function setServerSession(event: AuthChangeEvent, session: Session): Promise<any> {
+	console.log({ session });
+	await fetch('/auth', {
+		method: 'POST',
+		headers: new Headers({ 'Content-Type': 'application/json' }),
+		credentials: 'same-origin',
+		body: JSON.stringify({ event, session })
+	});
+}
 
-// 	return {
-// 		status: 200,
-// 		body: 'success',
-// 		headers: {
-// 			'set-cookie': `session=${
-// 				user_session?.user?.email
-// 			}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${new Date(
-// 				user_session.expires_at * 1000
-// 			).toUTCString()};`
-// 		}
-// 	};
-// }
+export const setAuthCookie = async (session: Session): Promise<unknown> =>
+	await setServerSession('SIGNED_IN', session);
+export const unsetAuthCookie = async (): Promise<unknown> =>
+	await setServerSession('SIGNED_OUT', null);
