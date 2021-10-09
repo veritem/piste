@@ -12,26 +12,16 @@
 
 <script>
 	
-	/* import { goto } from '$app/navigation'; */
+	import { goto } from '$app/navigation';
 
+	async function signin() {	
+	let response = await fetch('/auth', { 
+		 	method: 'POST', 
+		}); 
 
-	import supabase from '$lib/utils/db';
-
-	async function signin() {
-		const { session,user } = await supabase.auth.signIn({
-			provider: 'google'
-		});
-
-		console.log({user,session})
-
-		/* let response = await fetch('/auth', { */
-		/* 	method: 'POST', */
-		/* 	body: JSON.stringify({ session }) */
-		/* }); */
-
-		/* if (response.ok) { */
-		/* 	goto('/app'); */
-		/* } */
+		if (response.ok) { 
+		 	goto('/app'); 
+		} 
 	}
 </script>
 
