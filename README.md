@@ -1,3 +1,0 @@
-### piste
-
-> Consistency manager.

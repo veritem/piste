@@ -1,13 +1,11 @@
 <script lang="ts">
+import { onMount } from 'svelte';
+
 	import '../app.postcss';
 
-	/* import { browser } from '$app/env'; */
-	/* import { goto } from '$app/navigation'; */
-	/* import { user } from '$lib/stores/user'; */
-
-	/* if (browser) { */
-	/* 	$user ? goto('/app') : goto('/'); */
-	/* } */
+	onMount(() => {
+     // handle authentication logic here
+	})
 </script>
 
 <slot />
