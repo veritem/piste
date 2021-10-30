@@ -1,11 +1,11 @@
 <script lang="ts">
-import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	import '../app.postcss';
 
 	onMount(() => {
-     // handle authentication logic here
-	})
+		// Working
+	});
 </script>
 
 <slot />
