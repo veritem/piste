@@ -18,9 +18,9 @@ export async function post(request: Request) {
 		status: 200,
 		body: 'success',
 		headers: {
-			'set-cookie': `session=${
-				session?.user?.email
-			}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${new Date(
+			'set-cookie': `session=${JSON.stringify(
+				session
+			)}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${new Date(
 				session.expires_at * 1000
 			).toUTCString()};`
 		}

@@ -17,4 +17,3 @@
 <svelte:head>
 	<title>Piste</title>
 </svelte:head>
-<h1>Home</h1>

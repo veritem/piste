@@ -19,7 +19,9 @@ specifiers:
   prettier-plugin-svelte: ^2.2.0
   svelte: ^3.44.0
   svelte-check: ^2.0.0
+  svelte-multiselect: ^1.2.3
   svelte-preprocess: ^4.9.4
+  svelte-simple-modal: ^1.0.3
   tailwindcss: ^2.2.15
   tslib: ^2.0.0
   typescript: ^4.0.0
@@ -28,6 +30,7 @@ dependencies:
   '@supabase/supabase-js': 1.22.6
   '@sveltejs/adapter-vercel': 1.0.0-next.30
   cookie: 0.4.1
+  svelte-simple-modal: 1.0.3_svelte@3.44.0
 
 devDependencies:
   '@sveltejs/kit': 1.0.0-next.192_svelte@3.44.0
@@ -45,6 +48,7 @@ devDependencies:
   prettier-plugin-svelte: 2.4.0_prettier@2.4.1+svelte@3.44.0
   svelte: 3.44.0
   svelte-check: 2.2.6_2949faf1e2549de3c4f66ec832f6e5de
+  svelte-multiselect: 1.2.3
   svelte-preprocess: 4.9.4_922a6bb7cf865a76ba7ad28682629c2d
   tailwindcss: 2.2.15_4dc2d3db2b138fb8fa7d5c7b0c803aba
   tslib: 2.3.1
@@ -3343,6 +3347,13 @@ packages:
       svelte: 3.44.0
     dev: true
 
+  /svelte-multiselect/1.2.3:
+    resolution:
+      {
+        integrity: sha512-hpxWoWFs8VCB6TnLl5lRnVpu16fLu3ZZA054SD8Oi0JxECr5eW8VTvjihM6axDK/iYI/1Sd+2VIJNnV0fpPc5g==
+      }
+    dev: true
+
   /svelte-preprocess/4.9.4_922a6bb7cf865a76ba7ad28682629c2d:
     resolution:
       {
@@ -3398,6 +3409,17 @@ packages:
       svelte: 3.44.0
       typescript: 4.4.3
     dev: true
+
+  /svelte-simple-modal/1.0.3_svelte@3.44.0:
+    resolution:
+      {
+        integrity: sha512-rW2kGUbw1/JEDBTR63L5XUu0+iW2Iij6Oi78ZiI+cDVicR9qANUwSwzCLtknK5Wb/RBxdsDl62mBKfrHcqeEnQ==
+      }
+    peerDependencies:
+      svelte: ^3.18.2
+    dependencies:
+      svelte: 3.44.0
+    dev: false
 
   /svelte/3.44.0:
     resolution:
