@@ -27,7 +27,6 @@
 		"prettier-plugin-svelte": "^2.2.0",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.0.0",
-		"svelte-multiselect": "^1.2.3",
 		"svelte-preprocess": "^4.9.4",
 		"tailwindcss": "^2.2.15",
 		"tslib": "^2.0.0",
