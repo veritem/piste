@@ -1,6 +1,6 @@
 <script context="module">
 	export async function load({ session }) {
-	if(Object.keys(session).length === 0) {
+		if (Object.keys(session).length === 0 && session.constructor === Object) {
 			return {
 				status: 302,
 				redirect: '/signin'
@@ -18,14 +18,12 @@
 	import CreateStrike from '$lib/components/CreateStrike.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	let modal;
-	export let session
+	export let session;
 </script>
 
 <svelte:head>
 	<title>Application</title>
 </svelte:head>
-
-<code><pre>{JSON.stringify(session.session, undefined, 2)}</pre></code>
 
 <nav class="bg-purple-500 text-white flex justify-around py-4">
 	<a href="/app" class="text-3xl font-primary">Piste</a>
@@ -43,3 +41,5 @@
 		<CreateStrike />
 	</Modal>
 </section>
+
+<code><pre>{JSON.stringify(session.session, undefined, 2)}</pre></code>
