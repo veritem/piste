@@ -17,15 +17,16 @@
 	let name;
 
 	async function submit() {
-		const { data, error } = await supabase
-			.from('strikes')
-			.insert({ title: name,days: selected});
+		const { data,error } = await supabase.from('strikes').insert({ title: name, days: selected });
 		if (error) {
 			alert(error.message);
-			}
-		console.log({data})
-		alert("Inserted")
-	}
+		}
+		alert('Inserted');
+		if(data) {
+			selected = [];
+		name = '';
+		}
+	 	}
 </script>
 
 <div class="font-primary px-3 py-5">

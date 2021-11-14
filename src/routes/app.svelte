@@ -17,12 +17,24 @@
 <script>
 	import CreateStrike from '$lib/components/CreateStrike.svelte';
 	import Modal from '$lib/components/Modal.svelte';
+	import {onMount} from "svelte"
+	import supabase from "$lib/utils/db"
+
+	let strikes;
+
+	onMount(() => {
+         supabase.from('strikes').select('*').then(res => {
+			 strikes = res.body;
+		 })
+		console.log(strikes)
+	})
+
 	let modal;
-	export let session;
+//	export let session;
 </script>
 
 <svelte:head>
-	<title>Application</title>
+	<title>app</title>
 </svelte:head>
 
 <nav class="bg-purple-500 text-white flex justify-around py-4">
@@ -41,5 +53,12 @@
 		<CreateStrike />
 	</Modal>
 </section>
-
-<code><pre>{JSON.stringify(session.session, undefined, 2)}</pre></code>
+<div class="w-36">
+	<!--	<code><pre>{JSON.stringify(JSON.parse(strikes), null, 4)}</pre></code>-->
+	<!--	{#each strikes as strike}
+			<div>
+                 <p>{strike.title}</p>
+			</div>
+	{/each}
+	-->
+</div>
