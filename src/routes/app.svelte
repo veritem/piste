@@ -6,6 +6,7 @@
 				redirect: '/signin'
 			};
 		}
+
 		return {
 			props: {
 				session
