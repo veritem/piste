@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@prisma/client': ^3.0.2
   '@supabase/supabase-js': ^1.22.6
   '@sveltejs/adapter-vercel': ^1.0.0-next.30
   '@sveltejs/kit': next
@@ -18,7 +19,6 @@ specifiers:
   postcss-load-config: ^3.1.0
   prettier: ~2.4.1
   prettier-plugin-svelte: ^2.2.0
-  prisma: ^3.4.2
   svelte: ^3.44.0
   svelte-check: ^2.0.0
   svelte-preprocess: ^4.9.4
@@ -28,6 +28,7 @@ specifiers:
   typescript: ^4.0.0
 
 dependencies:
+  '@prisma/client': 3.5.0
   '@supabase/supabase-js': 1.22.6
   '@sveltejs/adapter-vercel': 1.0.0-next.30
   cookie: 0.4.1
@@ -48,7 +49,6 @@ devDependencies:
   postcss-load-config: 3.1.0
   prettier: 2.4.1
   prettier-plugin-svelte: 2.4.0_prettier@2.4.1+svelte@3.44.0
-  prisma: 3.4.2
   svelte: 3.44.0
   svelte-check: 2.2.6_2949faf1e2549de3c4f66ec832f6e5de
   svelte-preprocess: 4.9.4_922a6bb7cf865a76ba7ad28682629c2d
@@ -131,10 +131,22 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@prisma/engines/3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9:
-    resolution: {integrity: sha512-NO4Q88k3CfUpYzfpDD+0wSVCqhaeljCFAGSe1XyvmXAOlMU2AAjCwmRn6S4UXlT9yEGB/LwFjdvGjcgfUQ+Mtw==}
+  /@prisma/client/3.5.0:
+    resolution: {integrity: sha512-LuaaisknLe9CCfJ1Rtqe9b9knvPgEEcC77OMmWdo3fSanxl5oTDxcH3IIhpULQQlJfZvDcaEXuXNU4dsNF+q1w==}
+    engines: {node: '>=12.6'}
     requiresBuild: true
-    dev: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 3.5.0-38.78a5df6def6943431f4c022e1428dbc3e833cf8e
+    dev: false
+
+  /@prisma/engines-version/3.5.0-38.78a5df6def6943431f4c022e1428dbc3e833cf8e:
+    resolution: {integrity: sha512-X16YmBmj7Omso4ZbkNBe6gPYlNcnwZMUPtXsguCkn+KoMqm3DJD9M4X31gx0Gf13Q44dY3SKPJZUk44/XUj/WA==}
+    dev: false
 
   /@rollup/pluginutils/4.1.1:
     resolution: {integrity: sha512-clDjivHqWGXi7u+0d2r2sBi4Ie6VLEAzWMIkvJLnDmxoOhBYOTfzGbOQBA32THHm11/LiJbd01tJUpJsbshSWQ==}
@@ -2219,15 +2231,6 @@ packages:
   /pretty-hrtime/1.0.3:
     resolution: {integrity: sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=}
     engines: {node: '>= 0.8'}
-    dev: true
-
-  /prisma/3.4.2:
-    resolution: {integrity: sha512-wOD1lni7MfH/Qkp5SAkUthLKG+pQcpD31Nm8nAKj9ESgqId/dy+JDSTYOuk/pySvFyby/A+bsAPWIaVmo7qqhQ==}
-    engines: {node: '>=12.6'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      '@prisma/engines': 3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9
     dev: true
 
   /process/0.11.10:

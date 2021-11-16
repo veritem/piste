@@ -13,3 +13,9 @@ model strikes {
   title      String?   @db.VarChar
   days       String[]
 }
+
+model projects {
+  id         BigInt    @id @default(autoincrement())
+  name String
+  description String
+}

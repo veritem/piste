@@ -20,6 +20,7 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import {onMount} from "svelte"
 	import supabase from "$lib/utils/db"
+import Nav from '$lib/components/Nav.svelte';
 
 	let strikes;
 
@@ -38,12 +39,8 @@
 	<title>app</title>
 </svelte:head>
 
-<nav class="bg-purple-500 text-white flex justify-around py-4">
-	<a href="/app" class="text-3xl font-primary">Piste</a>
-	<form action="/api/logout" method="GET">
-		<button class="bg-purple-900 px-8 py-2 rounded-sm shadow-md">logout</button>
-	</form>
-</nav>
+	<Nav/>
+	
 
 <section class="grid place-items-center h-full pt-20 font-primary">
 	<button
