@@ -11,8 +11,6 @@
 </script>
 
 <script lang="ts">
-	import { goto } from '$app/navigation';
-
 	let error: string;
 	async function signIn(e) {
 		error = undefined;
@@ -40,12 +38,20 @@
 		{/if}
 
 		<label for="email" class="text-white">Email</label>
-		<input class="block p-2 rounded w-full" id="email" required name="email" type="email" /><br />
-		<label for="password" class="text-white ">Password</label>
 		<input
 			class="block p-2 rounded w-full"
-			id="password "
+			id="email"
 			required
+			name="email"
+			type="email"
+			placeholder="tim@apple.com"
+		/><br />
+		<label for="password" class="text-white">Password</label>
+		<input
+			class="block p-2 rounded w-full"
+			id="password"
+			required
+			placeholder="secret"
 			name="password"
 			type="password"
 		/><br />

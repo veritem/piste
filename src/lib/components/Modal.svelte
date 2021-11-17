@@ -10,7 +10,7 @@
 
 <svelte:window
 	on:keydown={(e) => {
-		if (e.keyCode == 27) {
+	if (e.key == 'Escape') {
 			hide();
 		}
 	}}
