@@ -10,6 +10,9 @@
 Why?
 
 I built this app for my self since or however is in need to, I can't a fford paying great products I have to sacrifice my time. I wasn't happy with all free plans I have found on th internet.
+
+https://github.com/mikenikles/sveltekit-prisma
+
 -->
 
 Makuza Mugabo Verite &copy;2021 MIT
