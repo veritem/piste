@@ -40,8 +40,8 @@
 	<title>signup</title>
 </svelte:head>
 
-<section class="grid place-items-center h-screen w-screen">
-	<form on:submit|preventDefault={signUp} class="bg-purple-600 px-10 py-12 w-[30rem] rounded-md">
+<section class="grid place-items-center h-screen w-screen font-primary">
+	<form on:submit|preventDefault={signUp} class="bg-primary px-10 py-12 w-[30rem] rounded-md">
 		{#if error}
 			<p class="text-red-400 text-center">{error}</p>
 		{/if}
@@ -53,7 +53,8 @@
 			id="names"
 			name="names"
 			type="text"
-			bind:value={names}
+   bind:value={names}
+   placeholder="John collision"
 		/><br />
 
 		<label for="email" class="text-white">Email</label>
@@ -62,8 +63,9 @@
 			id="email"
 			required
 			name="email"
-			type="email"
-			bind:value={names}
+   type="email"
+   placeholder="tim@apple.com"
+			bind:value={email}
 		/><br />
 		<label for="password" class="text-white">Password</label>
 		<input
@@ -71,9 +73,10 @@
 			id="password"
 			name="password"
 			required
-			type="password"
+   type="password"
+   placeholder="secret"
 			bind:value={password}
 		/><br />
-		<button class="p-2 rounded block w-full bg-purple-900 shadow-md text-white">Sign up</button>
+		<button class="p-2 rounded block w-full bg-purple shadow-md text-white">Sign up</button>
 	</form>
 </section>

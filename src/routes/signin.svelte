@@ -31,8 +31,8 @@
 	<title>signin</title>
 </svelte:head>
 
-<section class="grid place-items-center h-screen w-screen">
-	<form on:submit|preventDefault={signIn} class="bg-purple-600 px-10 py-12 w-[30rem] rounded-md">
+<section class="grid place-items-center h-screen w-screen font-primary">
+	<form on:submit|preventDefault={signIn} class="bg-primary px-10 py-12 w-[30rem] rounded-md">
 		{#if error}
 			<p class="text-red-300 text-center">{error}</p>
 		{/if}
@@ -55,6 +55,6 @@
 			name="password"
 			type="password"
 		/><br />
-		<button class="p-2 rounded block w-full bg-purple-900 shadow-md text-white">signin</button>
+		<button class="p-2 rounded block w-full bg-purple shadow-md text-white">signin</button>
 	</form>
 </section>

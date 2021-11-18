@@ -7,4 +7,5 @@ const supabase = createClient(
 );
 const PrismaClient = Prisma?.PrismaClient || PrismaAll?.PrismaClient;
 export const prisma = new PrismaClient();
+
 export default supabase;

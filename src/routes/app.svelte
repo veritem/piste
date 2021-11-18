@@ -19,19 +19,19 @@
 	import CreateStrike from '$lib/components/CreateStrike.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import { onMount } from 'svelte';
-	import supabase from '$lib/utils/db';
+	/* import supabase from '$lib/utils/db'; */
 	import Nav from '$lib/components/Nav.svelte';
 
 	let strikes;
 
 	onMount(() => {
-		supabase
-			.from('strikes')
-			.select('*')
-			.then((res) => {
-				strikes = res.body;
-			});
-		console.log(strikes);
+		/* supabase */
+		/* 	.from('strikes') */
+		/* 	.select('*') */
+		/* 	.then((res) => { */
+		/* 		strikes = res.body; */
+		/* 	}); */
+		/* console.log(strikes); */
 	});
 
 	let modal;
