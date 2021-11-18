@@ -15,4 +15,11 @@ https://github.com/mikenikles/sveltekit-prisma
 
 -->
 
+#### Tech stack
+
+- Svelte-kit
+- TypeScript
+- Supabase
+- Prisma
+
 Makuza Mugabo Verite &copy;2021 MIT
