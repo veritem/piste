@@ -53,8 +53,8 @@
 			id="names"
 			name="names"
 			type="text"
-   bind:value={names}
-   placeholder="John collision"
+			bind:value={names}
+			placeholder="John collision"
 		/><br />
 
 		<label for="email" class="text-white">Email</label>
@@ -63,8 +63,8 @@
 			id="email"
 			required
 			name="email"
-   type="email"
-   placeholder="tim@apple.com"
+			type="email"
+			placeholder="tim@apple.com"
 			bind:value={email}
 		/><br />
 		<label for="password" class="text-white">Password</label>
@@ -73,8 +73,8 @@
 			id="password"
 			name="password"
 			required
-   type="password"
-   placeholder="secret"
+			type="password"
+			placeholder="secret"
 			bind:value={password}
 		/><br />
 		<button class="p-2 rounded block w-full bg-purple shadow-md text-white">Sign up</button>

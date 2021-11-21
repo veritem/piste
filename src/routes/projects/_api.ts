@@ -1,13 +1,13 @@
-import { prisma } from '$lib/utils/db';
+import prisma from '$lib/utils/prisma';
 import type { Request } from '@sveltejs/kit';
 
 export type Project = {
-	id: number;
+	id?: number;
 	name: string;
 	description: string;
-	userId: string;
-	createdAt: string;
-	updatedAt: string;
+	userId?: string;
+	createdAt?: string;
+	updatedAt?: string;
 };
 
 export async function api(request: Request, resource: string, data?: Project) {
@@ -55,6 +55,7 @@ export async function api(request: Request, resource: string, data?: Project) {
 			}
 		};
 	}
+
 	return {
 		status,
 		body

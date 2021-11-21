@@ -1,4 +1,4 @@
-<nav class="bg-purple-500 text-white flex justify-around items-center py-4">
+<nav class="bg-primary text-white flex justify-around items-center py-4">
 	<a class="block uppercase" href="/app">piste</a>
 	<ul class="flex space-x-4">
 		<li><a href="/projects">Projects</a></li>

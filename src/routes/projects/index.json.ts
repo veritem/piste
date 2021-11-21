@@ -1,5 +1,5 @@
 import type { Request, RequestHandler } from '@sveltejs/kit';
-import { api } from './_api';
+import { api, Project } from './_api';
 
 export const get: RequestHandler = async (req: Request) => {
 	const response = await api(req, `projects`);
@@ -10,9 +10,11 @@ export const get: RequestHandler = async (req: Request) => {
 	return response;
 };
 
-export const post: RequestHandler<FormData> = async (req) => {
-	const response = await api(req, `projects`, {
-		body: req.body.get('name').toString()
+export const post: RequestHandler = async (req) => {
+	let project = req.body as Project;
+	const response = await api(req, 'projects', {
+		name: project.name,
+		description: project.description
 	});
 	return response;
 };
