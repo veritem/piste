@@ -47,14 +47,14 @@ export async function api(request: Request, resource: string, data?: Project) {
 			break;
 	}
 
-	if (request.method !== 'GET' && request.headers.accept !== 'application/json') {
-		return {
-			status: 303,
-			headers: {
-				location: '/projects'
-			}
-		};
-	}
+	// if (request.method !== 'GET' && request.headers.accept !== 'application/json') {
+	// 	return {
+	// 		status: 303,
+	// 		headers: {
+	// 			location: '/projects'
+	// 		}
+	// 	};
+	// }
 
 	return {
 		status,

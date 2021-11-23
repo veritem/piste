@@ -22,4 +22,11 @@ https://github.com/mikenikles/sveltekit-prisma
 - Supabase
 - Prisma
 
+
+#### Change log
+
+- Projects 
+   - Managing tasks inside projects
+   - Deleting projects and updating their names
+
 Makuza Mugabo Verite &copy;2021 MIT

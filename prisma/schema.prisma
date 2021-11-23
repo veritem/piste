@@ -7,24 +7,64 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model strikes {
-  id         Int    @id @default(autoincrement())
-  created_at DateTime? @default(now()) @db.Timestamptz(6)
-  title      String?   @db.VarChar
-  days       String[]
+model User {
+  id        String    @id @default(uuid())
+  uuid      String?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime  @updatedAt
+  name      String
+  username  String    @unique
+  projects  Project[]
+  habits    Habit[]
 }
 
-model users {
-  id         Int    @id @default(autoincrement())
-  created_at DateTime? @default(now()) @db.Timestamptz(6)
-  name       String?   @db.VarChar
-}
-
-
-model projects {
-  id          Int    @id @default(autoincrement())
+model Project {
+  id          String   @id @default(uuid())
   name        String
   description String
-  created_at  DateTime? @default(now()) @db.Timestamptz(6)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tasks       Task[]
 }
 
+model Task {
+  id        String   @id @default(uuid())
+  name      String
+  Project   Project? @relation(fields: [projectId], references: [id])
+  projectId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Habit {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+  strikes   Strike[]
+}
+
+model Strike {
+  id          String     @id @default(uuid())
+  createdAt   DateTime?  @default(now()) @db.Timestamptz(6)
+  title       String
+  updatedAt   DateTime   @updatedAt
+  days        String[]
+  Habit       Habit?     @relation(fields: [habitId], references: [id])
+  habitId     String?
+  name        String
+  description String?
+  activity    Activity[]
+}
+
+model Activity {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Strike    Strike?  @relation(fields: [strikeId], references: [id])
+  strikeId  String?
+}

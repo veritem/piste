@@ -16,5 +16,8 @@ export const post: RequestHandler = async (req) => {
 		name: project.name,
 		description: project.description
 	});
+
+	console.log(response);
+
 	return response;
 };
