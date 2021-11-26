@@ -1,27 +1,20 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 	export const load: Load = async ({ fetch }) => {
-		let res = await fetch('/projects.json');
+		let res = await fetch('/app/projects.json');
 
 		if (res.ok) {
-			let projects = await res.json();
-			return {
-				props: { projects }
-			};
+			let resp = await res.json();
+			return { props: { projects: resp.data } };
 		}
 
-		let { message } = await res.json();
-		return {
-			error: new Error(message)
-		};
+		return { props: {} };
 	};
 </script>
 
 <script lang="ts">
-	import Nav from '$lib/components/Nav.svelte';
-	import type { Project } from './_api';
-
-	export let projects: Project[];
+	import type { Project } from '@prisma/client';
+	export let projects: Project[] = [];
 
 	let project_name = '';
 	let project_description = '';
@@ -34,8 +27,9 @@
 			},
 			body: JSON.stringify({ name: project_name, description: project_description })
 		});
+
 		if (res.ok) {
-			let project: Project = await res.json();
+			let project = await res.json();
 			projects = [project, ...projects];
 			project_name = '';
 			project_description = '';
@@ -58,7 +52,7 @@
 				<ul class="py-3 text-center px-2">
 					{#each projects as project}
 						<a
-							href={`projects/${project.id}`}
+							href={`/app/projects/${project.id}`}
 							class="py-2 rounded-sm hover:bg-pink text-white cursor-pointer"
 						>
 							{project.name}

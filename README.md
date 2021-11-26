@@ -13,6 +13,11 @@ I built this app for my self since or however is in need to, I can't a fford pay
 
 https://github.com/mikenikles/sveltekit-prisma
 
+
+To seed the database do
+
+pnpm dlx prisma db seed
+
 -->
 
 #### Tech stack
@@ -22,11 +27,10 @@ https://github.com/mikenikles/sveltekit-prisma
 - Supabase
 - Prisma
 
-
 #### Change log
 
-- Projects 
-   - Managing tasks inside projects
-   - Deleting projects and updating their names
+- Projects
+  - Managing tasks inside projects
+  - Deleting projects and updating their names
 
 Makuza Mugabo Verite &copy;2021 MIT

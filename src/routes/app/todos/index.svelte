@@ -1,5 +1,4 @@
 <script>
-	import Nav from '$lib/components/Nav.svelte';
 </script>
 
 <svelte:head>
@@ -7,5 +6,5 @@
 </svelte:head>
 
 <section>
-	<Nav />
+	<h1>Todos</h1>
 </section>

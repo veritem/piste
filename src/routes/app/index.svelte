@@ -27,7 +27,6 @@
 	<title>app</title>
 </svelte:head>
 
-
 <section class="grid place-items-center h-full pt-20 font-primary">
 	<button
 		class="bg-purple-900 text-white py-4 px-8 rounded-md shadow-md"
@@ -39,7 +38,7 @@
 </section>
 <!-- <div class="w-36">
 	<!--	<code><pre>{JSON.stringify(JSON.parse(strikes), null, 4)}</pre></code>-->
-	<!--	{#each strikes as strike}
+<!--	{#each strikes as strike}
 			<div>
                  <p>{strike.title}</p>
 			</div>

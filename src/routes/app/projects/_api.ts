@@ -1,44 +1,34 @@
 import prisma from '$lib/utils/prisma';
+import type { Project } from '@prisma/client';
 import type { Request } from '@sveltejs/kit';
 
-export type Project = {
-	id?: number;
-	name: string;
-	description: string;
-	userId?: string;
-	createdAt?: string;
-	updatedAt?: string;
-};
-
 export async function api(request: Request, resource: string, data?: Project) {
-	// handle user not found on the request
-
 	let status = 500;
 	let body = {};
 
 	switch (request.method.toUpperCase()) {
 		case 'GET':
-			body = await prisma.projects.findMany();
+			body = await prisma.project.findMany();
 			status = 200;
 			break;
 		case 'POST':
-			body = await prisma.projects.create({
-				data: {
-					name: data.name,
-					description: data.description
-				}
-			});
+			// body = await prisma.project.create({
+			// 	data: {
+			// 		name: data.name,
+			// 		description: data.description
+			// 	}
+			// })
 			status = 201;
 			break;
 		case 'PATCH':
-			body = await prisma.projects.update({
-				data: data,
-				where: { id: parseInt(resource.split('/').pop()) }
-			});
+			// body = await prisma.project.update({
+			// 	data: data,
+			// 	where: { id: resource.split('/').pop() }
+			// })
 			status = 200;
 			break;
 		case 'DELETE':
-			await prisma.projects.delete({
+			await prisma.project.delete({
 				where: {
 					id: data.id
 				}
@@ -55,6 +45,8 @@ export async function api(request: Request, resource: string, data?: Project) {
 	// 		}
 	// 	};
 	// }
+
+	console.log({ body });
 
 	return {
 		status,
