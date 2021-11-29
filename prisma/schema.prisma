@@ -32,7 +32,7 @@ model Project {
 model Task {
   id        String   @id @default(uuid())
   name      String
-  Project   Project? @relation(fields: [projectId], references: [id])
+  Project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

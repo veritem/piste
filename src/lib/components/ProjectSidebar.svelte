@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Project } from '@prisma/client';
 
+
 	export let projects: Project[];
 
 	/* let project_name = ''; */
@@ -26,6 +27,8 @@
 	/* 	let { message } = await res.json(); */
 	/* 	alert(message); */
 	/* } */
+	export let activeProject = undefined;
+
 </script>
 
 <aside class="w-80 shadow-sm  bg-primary h-screen">
@@ -34,7 +37,9 @@
 			{#each projects as project}
 				<a
 					href={`/app/projects/${project.id}`}
-					class="py-2 px-4 rounded-sm block hover:bg-pink text-white cursor-pointer"
+					class={`py-2 px-4 rounded-sm block hover:bg-pink text-white cursor-pointer ${
+						activeProject === project.id ? ' bg-pink' : ''
+					}`}
 				>
 					{project.name}
 				</a>

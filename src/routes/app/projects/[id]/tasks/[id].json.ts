@@ -24,7 +24,7 @@ export const patch: RequestHandler = async ({ params, body }) => {
 	};
 };
 
-export const del: RequestHandler = async () => {
+export const del: RequestHandler = async ({ request, params }) => {
 	return {
 		status: 200,
 		body: null

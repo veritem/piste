@@ -3,11 +3,8 @@ module.exports = {
 	purge: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		colors: {
-			primary: '#100F0F',
-			yellow: 'FFAB4C',
-			pink: '#FF5F7E',
-			purple: '#B000B9',
-			white: '#FFFFFF'
+			primary: '#202020',
+			secondary: '#ffd100',
 		},
 		extend: {},
 		fontFamily: {

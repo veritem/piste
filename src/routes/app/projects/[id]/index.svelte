@@ -24,9 +24,13 @@
 <script lang="ts">
 	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
 	import type { Project, Task } from '@prisma/client';
+	import { onMount } from 'svelte';
 	export let project: Project;
 	export let projects: Project[];
 	export let tasks: Task[];
+
+
+
 
 	let isTaskFormOpen = false;
 
@@ -38,7 +42,7 @@
 </svelte:head>
 
 <section class="font-primary flex space-x-8">
-	<ProjectSidebar {projects} />
+	<ProjectSidebar {projects}/>
 	<section>
 		<div class="py-4">
 			<h3 class="text-xl font-bold">{project.name}</h3>
@@ -74,7 +78,9 @@
 							}
 						}}
 					/>
-					<label for={task.id}>{task.name}</label>
+					<label for={task.id}>{task.name} </label> <span class="text-gray-600 cursor-pointer" on:click={() => {
+console.log('clicked: ' + task.id);
+						}}>x</span>
 				</div>
 			{/each}
 		{:else}
@@ -85,7 +91,10 @@
 			class="hover:text-pink py-4"
 			on:click={() => {
 				isTaskFormOpen = !isTaskFormOpen;
-			}}><span class="text-2xl">+</span> Add task</button
+			}}
+			><span class="text-2xl">{isTaskFormOpen ? ' - ' : ' + '}</span>{isTaskFormOpen
+				? 'Close form'
+				: 'Add task'}</button
 		>
 
 		{#if isTaskFormOpen}
@@ -109,8 +118,18 @@
 					}
 				}}
 			>
-				<input type="text" placeholder="task name" required bind:value={taskName} />
-				<input type="submit" value="add task" class="py-2 bg-primary text-white cursor-pointer" />
+				<input
+					type="text"
+					placeholder="task name"
+					class="rounded-sm"
+					required
+					bind:value={taskName}
+				/>
+				<input
+					type="submit"
+					value="add task"
+					class="py-2 bg-primary text-white cursor-pointer rounded-sm"
+				/>
 			</form>
 		{/if}
 	</section>
