@@ -16,7 +16,7 @@ async function seed() {
 	for (let i = 0; i < 5; i++) {
 		await prisma.project.create({
 			data: {
-				name: faker.name.jobTitle(),
+				name: faker.animal.dog(),
 				description: faker.lorem.sentence(),
 				userId: '0af718f7-cd35-4544-9c02-768bbc0a1634'
 			}

@@ -37,10 +37,12 @@
 	$: if ((activeOption && !filtered.includes(activeOption)) || (!activeOption && inputValue))
 		activeOption = filtered[0];
 
+	//@ts-ignore
 	function add(token) {
 		if (!readonly) selected[token.value] = token;
 	}
 
+	//@ts-nocheck
 	function remove(value) {
 		if (!readonly) {
 			const { [value]: val, ...rest } = selected;
@@ -48,6 +50,7 @@
 		}
 	}
 
+	//@ts-ignore
 	function optionsVisibility(show) {
 		if (readonly) return;
 		if (typeof show === 'boolean') {
@@ -61,6 +64,7 @@
 		}
 	}
 
+	//@ts-ignore
 	function handleKeyup(e) {
 		if (e.keyCode === 13) {
 			Object.keys(selected).includes(activeOption.value)
@@ -81,10 +85,12 @@
 		}
 	}
 
+	//@ts-ignore
 	function handleBlur(e) {
 		optionsVisibility(false);
 	}
 
+	//@ts-ignore
 	function handleTokenClick(e) {
 		if (e.target.closest('.token-remove')) {
 			e.stopPropagation();
@@ -97,6 +103,7 @@
 		}
 	}
 
+	//@ts-ignore
 	function handleOptionMousedown(e) {
 		const value = e.target.dataset.value;
 		if (selected[value]) {

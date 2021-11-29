@@ -10,8 +10,8 @@
 </script>
 
 <script lang="ts">
-	export let title;
-	export let message;
+	export let title: string;
+	export let message: string;
 </script>
 
 <svelte:head>
