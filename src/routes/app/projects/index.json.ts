@@ -16,8 +16,6 @@ export const get: RequestHandler = async (req: Request) => {
 };
 
 export const post: RequestHandler<Locals, FormData> = async (req: Request<Locals>) => {
-	console.log(req.body);
-
 	if (!req.locals.userId) {
 		return {
 			status: 401,

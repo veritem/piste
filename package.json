@@ -39,7 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@prisma/client": "^3.0.2",
+		"@prisma/client": "^3.6.0",
 		"@supabase/supabase-js": "^1.22.6",
 		"@sveltejs/adapter-vercel": "^1.0.0-next.30",
 		"@tailwindcss/forms": "^0.3.4",
