@@ -29,9 +29,6 @@
 	export let projects: Project[];
 	export let tasks: Task[];
 
-
-
-
 	let isTaskFormOpen = false;
 
 	let taskName: string = '';
@@ -42,7 +39,7 @@
 </svelte:head>
 
 <section class="font-primary flex space-x-8">
-	<ProjectSidebar {projects}/>
+	<ProjectSidebar {projects} />
 	<section>
 		<div class="py-4">
 			<h3 class="text-xl font-bold">{project.name}</h3>
@@ -78,9 +75,13 @@
 							}
 						}}
 					/>
-					<label for={task.id}>{task.name} </label> <span class="text-gray-600 cursor-pointer" on:click={() => {
-console.log('clicked: ' + task.id);
-						}}>x</span>
+					<label for={task.id}>{task.name} </label>
+					<span
+						class="text-gray-600 cursor-pointer"
+						on:click={() => {
+							console.log('clicked: ' + task.id);
+						}}>x</span
+					>
 				</div>
 			{/each}
 		{:else}

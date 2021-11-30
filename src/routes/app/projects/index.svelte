@@ -23,7 +23,7 @@
 </svelte:head>
 
 <section class="font-primary flex space-x-8">
-	<ProjectSidebar  {projects} />
+	<ProjectSidebar {projects} />
 	<div class=" italic py-4 font-bold">
 		<p>No project selected</p>
 	</div>

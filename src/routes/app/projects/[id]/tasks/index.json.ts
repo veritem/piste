@@ -4,7 +4,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 export const post: RequestHandler = async ({ params, body }) => {
 	let { name } = body;
 	const task = await prisma.task.create({
-		data: { name: name, projectId: params?.id }
+		data: { name, projectId: params?.id }
 	});
 
 	return {

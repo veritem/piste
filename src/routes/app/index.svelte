@@ -1,20 +1,3 @@
-<script context="module">
-	export async function load({ session }) {
-		if (Object.keys(session).length === 0 && session.constructor === Object) {
-			return {
-				status: 302,
-				redirect: '/signin'
-			};
-		}
-
-		return {
-			props: {
-				session
-			}
-		};
-	}
-</script>
-
 <script>
 	import CreateStrike from '$lib/components/CreateStrike.svelte';
 	import Modal from '$lib/components/Modal.svelte';

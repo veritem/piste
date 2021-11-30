@@ -12,13 +12,7 @@ export async function api(request: Request, resource: string, data?: Project) {
 			status = 200;
 			break;
 		case 'POST':
-			// body = await prisma.project.create({
-			// 	data: {
-			// 		name: data.name,
-			// 		description: data.description
-			// 	}
-			// })
-			status = 201;
+			body = status = 201;
 			break;
 		case 'PATCH':
 			// body = await prisma.project.update({

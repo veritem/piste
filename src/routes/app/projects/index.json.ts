@@ -15,11 +15,32 @@ export const get: RequestHandler = async (req: Request) => {
 	};
 };
 
-export const post: RequestHandler = async (req) => {
-	let project = req.body;
-	const response = await api(req, 'projects', project as any);
+export const post: RequestHandler<Locals, FormData> = async (req: Request<Locals>) => {
+	console.log(req.body);
 
-	console.log(response);
+	if (!req.locals.userId) {
+		return {
+			status: 401,
+			body: {
+				error: 'Unauthorized'
+			}
+		};
+	}
 
-	return response;
+	let { name, description } = req.body;
+
+	let data = await prisma.project.create({
+		data: {
+			name,
+			description,
+			userId: req.locals.userId
+		}
+	});
+
+	console.log(data);
+
+	return {
+		status: 201,
+		body: { data }
+	};
 };

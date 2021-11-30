@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id        String    @id @default(uuid())
-  uid       String?
+  uid       String    @unique
   createdAt DateTime? @default(now())
   updatedAt DateTime  @updatedAt
   name      String

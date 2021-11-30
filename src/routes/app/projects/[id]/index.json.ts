@@ -15,7 +15,7 @@ export const get: RequestHandler = async (request) => {
 	return { status: 404, body: { message: 'Project not found' } };
 };
 
-export const post: RequestHandler = async (request) => {
+export const post: RequestHandler<Locals, FormData> = async (request) => {
 	console.log(request.params);
 
 	return { status: 201, body: [] };

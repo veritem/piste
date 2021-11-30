@@ -1,22 +1,33 @@
 <script context="module">
-	/* export async function load({ session }) { */
-	/* 	if (Object.keys(session).length !== 0 && session.constructor !== Object) { */
-	/* 		return { */
-	/* 			status: 302, */
-	/* 			redirect: '/app' */
-	/* 		}; */
-	/* 	} */
-	/* 	return {}; */
-	/* } */
+	export async function load({ session }) {
+		if (session) {
+			return {
+				status: 302,
+				redirect: '/app'
+			};
+		}
+		return {
+ props: {}
+		};
+	}
 </script>
 
 <script lang="ts">
 	let error: string;
-	async function signIn(e) {
+	let email: string;
+	let password: string;
+	async function signIn() {
 		error = undefined;
+		if (!email || !password) {
+			error = 'Please enter your email and password';
+			return;
+		}
 		const response = await fetch('/api/signin', {
 			method: 'POST',
-			body: new FormData(e.target)
+			body: JSON.stringify({
+				email,
+				password
+			})
 		});
 
 		if (response.ok) {
@@ -45,6 +56,7 @@
 			name="email"
 			type="email"
 			placeholder="tim@apple.com"
+			bind:value={email}
 		/><br />
 		<label for="password" class="text-white">Password</label>
 		<input
@@ -54,7 +66,8 @@
 			placeholder="secret"
 			name="password"
 			type="password"
+			bind:value={password}
 		/><br />
-		<button class="p-2 rounded block w-full bg-purple shadow-md text-white">signin</button>
+		<button class="p-2 rounded block w-full bg-secondary shadow-md text-white">signin</button>
 	</form>
 </section>

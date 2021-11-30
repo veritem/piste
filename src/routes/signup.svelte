@@ -1,14 +1,15 @@
 <script context="module">
-	export async function load({ session }) {
-		if (Object.keys(session).length === 0) {
+export async function load({ session }) {
+		if (session) {
 			return {
 				status: 302,
 				redirect: '/app'
 			};
 		}
-		return {};
-	}
-</script>
+		return {
+ props: {}
+		};
+	}</script>
 
 <script>
 	let error;
