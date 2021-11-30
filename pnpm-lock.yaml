@@ -23,6 +23,7 @@ specifiers:
   postcss-load-config: ^3.1.0
   prettier: ~2.5.0
   prettier-plugin-svelte: ^2.2.0
+  prisma: ^3.6.0
   svelte: ^3.44.0
   svelte-check: ^2.0.0
   svelte-preprocess: ^4.9.4
@@ -33,7 +34,7 @@ specifiers:
   typescript: ^4.4.3
 
 dependencies:
-  '@prisma/client': 3.6.0
+  '@prisma/client': 3.6.0_prisma@3.6.0
   '@supabase/supabase-js': 1.22.6
   '@sveltejs/adapter-vercel': 1.0.0-next.30
   '@tailwindcss/forms': 0.3.4_tailwindcss@2.2.15
@@ -58,6 +59,7 @@ devDependencies:
   postcss-load-config: 3.1.0_ts-node@10.4.0
   prettier: 2.5.0
   prettier-plugin-svelte: 2.4.0_prettier@2.5.0+svelte@3.44.0
+  prisma: 3.6.0
   svelte: 3.44.0
   svelte-check: 2.2.6_2949faf1e2549de3c4f66ec832f6e5de
   svelte-preprocess: 4.9.4_922a6bb7cf865a76ba7ad28682629c2d
@@ -153,7 +155,7 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@prisma/client/3.6.0:
+  /@prisma/client/3.6.0_prisma@3.6.0:
     resolution: {integrity: sha512-ycSGY9EZGROtje0iCNsgC5Zqi/ttX2sO7BNMYaLsUMiTlf3F69ZPH+08pRo0hrDfkZzyimXYqeXJlaoYDH1w7A==}
     engines: {node: '>=12.6'}
     requiresBuild: true
@@ -164,11 +166,17 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727
+      prisma: 3.6.0
     dev: false
 
   /@prisma/engines-version/3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727:
     resolution: {integrity: sha512-vtoO2ys6mSfc8ONTWdcYztKN3GBU1tcKBj0aXObyjzSuGwHFcM/pEA0xF+n1W4/0TAJgfoPX2khNEit6g0jtNA==}
     dev: false
+
+  /@prisma/engines/3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727:
+    resolution: {integrity: sha512-dRClHS7DsTVchDKzeG72OaEyeDskCv91pnZ72Fftn0mp4BkUvX2LvWup65hCNzwwQm5IDd6A88APldKDnMiEMA==}
+    requiresBuild: true
+    dev: true
 
   /@rollup/pluginutils/4.1.1:
     resolution: {integrity: sha512-clDjivHqWGXi7u+0d2r2sBi4Ie6VLEAzWMIkvJLnDmxoOhBYOTfzGbOQBA32THHm11/LiJbd01tJUpJsbshSWQ==}
@@ -2314,6 +2322,15 @@ packages:
   /pretty-hrtime/1.0.3:
     resolution: {integrity: sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=}
     engines: {node: '>= 0.8'}
+    dev: true
+
+  /prisma/3.6.0:
+    resolution: {integrity: sha512-6SqgHS/5Rq6HtHjsWsTxlj+ySamGyCLBUQfotc2lStOjPv52IQuDVpp58GieNqc9VnfuFyHUvTZw7aQB+G2fvQ==}
+    engines: {node: '>=12.6'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727
     dev: true
 
   /process/0.11.10:
