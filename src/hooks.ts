@@ -5,7 +5,7 @@ import prisma from '$lib/utils/prisma';
 export const getSession = (request: Request) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 	const session = cookies['userId'];
-	return session;
+	return session ?? null;
 };
 
 export const handle: Handle = async ({ request, resolve }) => {

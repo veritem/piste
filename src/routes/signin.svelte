@@ -7,7 +7,7 @@
 			};
 		}
 		return {
- props: {}
+			props: {}
 		};
 	}
 </script>

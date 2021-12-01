@@ -1,6 +1,5 @@
 <script context="module">
 	export function load({ session }) {
-
 		if (!session) {
 			return {
 				redirect: '/signin',

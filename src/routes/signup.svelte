@@ -1,5 +1,5 @@
 <script context="module">
-export async function load({ session }) {
+	export async function load({ session }) {
 		if (session) {
 			return {
 				status: 302,
@@ -7,9 +7,10 @@ export async function load({ session }) {
 			};
 		}
 		return {
- props: {}
+			props: {}
 		};
-	}</script>
+	}
+</script>
 
 <script>
 	let error;
