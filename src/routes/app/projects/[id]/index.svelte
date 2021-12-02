@@ -76,12 +76,6 @@
 						}}
 					/>
 					<label for={task.id}>{task.name} </label>
-					<span
-						class="text-gray-600 cursor-pointer"
-						on:click={() => {
-							console.log('clicked: ' + task.id);
-						}}>x</span
-					>
 				</div>
 			{/each}
 		{:else}

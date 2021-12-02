@@ -14,7 +14,7 @@ module.exports = {
 		}),
 		extend: {},
 		fontFamily: {
-			primary: ['Inter', 'sans-serif']
+			primary: ['Outfit', 'sans-serif']
 		}
 	},
 	plugins: [require('@tailwindcss/forms')]

@@ -1,11 +1,13 @@
 import prisma from '$lib/utils/prisma';
 import type { Request, RequestHandler } from '@sveltejs/kit';
-import { api } from './_api';
 
-export const get: RequestHandler = async (req: Request) => {
+export const get: RequestHandler = async (req: Request<Locals>) => {
 	const data = await prisma.project.findMany({
 		include: {
 			user: true
+		},
+		orderBy: {
+			createdAt: 'desc'
 		}
 	});
 

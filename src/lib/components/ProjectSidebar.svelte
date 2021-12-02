@@ -29,9 +29,9 @@
 	export let activeProject = undefined;
 </script>
 
-<aside class="w-72  shadow-sm  bg-primary h-screen">
+<aside class="w-72  shadow-sm px-4  bg-primary h-screen font-primary">
 	{#if projects.length > 0}
-		<ul class="py-3 px-4">
+		<ul class="py-3">
 			{#each projects as project}
 				<a
 					href={`/app/projects/${project.id}`}
@@ -49,7 +49,7 @@
 		</div>
 	{/if}
 	<form
-		class="flex flex-col gap-4 px-5 w-11/12 justify-center"
+		class="flex flex-col gap-4 w-full justify-center"
 		on:submit|preventDefault={handlesubmit}
 	>
 		<input
