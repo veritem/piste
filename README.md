@@ -3,8 +3,9 @@
 #### Goals for the app
 
 - Better todolist
-- Habit building through strikes
-- Better statistics
+- Better habits tracking using beatiful statistics
+- Self hostable
+- Heavily Inspired by (Todoist)[https://todoist.com] and (Streaks)(https://streaks.app/)
 
 <!--
 Why?
@@ -29,8 +30,5 @@ pnpm dlx prisma db seed
 
 #### Change log
 
-- Projects
-  - Managing tasks inside projects
-  - Deleting projects and updating their names
 
 Makuza Mugabo Verite &copy;2021 MIT
