@@ -5,7 +5,7 @@
 - Better todolist
 - Better habits tracking using beatiful statistics
 - Self hostable
-- Heavily Inspired by (Todoist)[https://todoist.com] and (Streaks)(https://streaks.app/)
+- Heavily Inspired by [Todoist](https://todoist.com) and [Streaks](https://streaks.app/)
 
 <!--
 Why?
