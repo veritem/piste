@@ -4,8 +4,8 @@ import prisma from '$lib/utils/prisma';
 
 export const getSession = (request: Request) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
-	const session = cookies['userId'];
-	return session ?? null;
+	const session = cookies['userId'] ?? undefined;
+	return session;
 };
 
 export const handle: Handle = async ({ request, resolve }) => {

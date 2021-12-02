@@ -4,6 +4,9 @@ import type { Request } from '@sveltejs/kit';
 export async function post(request: Request) {
 	let { email, password } = JSON.parse(request.body);
 
+	// set supabase cookies
+	// await supabase.setCookies(request);
+
 	const { session, error } = await supabase.auth.signIn({ email, password });
 
 	if (error) {
