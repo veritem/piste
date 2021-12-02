@@ -28,7 +28,4 @@ pnpm dlx prisma db seed
 - Supabase
 - Prisma
 
-#### Change log
-
-
 Makuza Mugabo Verite &copy;2021 MIT
