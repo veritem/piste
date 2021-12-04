@@ -6,6 +6,6 @@
 		<li><a href="/app/todos">Todo</a></li>
 	</ul>
 	<form action="/api/logout" method="GET">
-		<button class="bg-purple-900 px-8 py-2 rounded-sm shadow-md">logout</button>
+		<button class="px-8 py-2 rounded-sm">logout</button>
 	</form>
 </nav>

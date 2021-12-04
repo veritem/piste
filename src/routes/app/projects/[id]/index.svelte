@@ -24,7 +24,6 @@
 <script lang="ts">
 	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
 	import type { Project, Task } from '@prisma/client';
-	import { onMount } from 'svelte';
 	export let project: Project;
 	export let projects: Project[];
 	export let tasks: Task[];
@@ -42,7 +41,7 @@
 	<ProjectSidebar {projects} />
 	<section>
 		<div class="py-4">
-			<h3 class="text-xl font-bold">{project.name}</h3>
+			<h3 class="text-3xl font-bold">{project.name}</h3>
 
 			<h4 class="text-base">{project.description}</h4>
 		</div>
@@ -54,7 +53,16 @@
 				<div>
 					<input
 						type="checkbox"
-						id={task.id}
+	  id={task.id}
+	  class="rounded-full
+                          border-gray-300
+                          text-blue-600
+                          shadow-sm
+                          focus:border-blue-300
+                          focus:ring
+                          focus:ring-offset-0
+                          focus:ring-blue-200
+                          focus:ring-opacity-50"
 						checked={task.completed}
 						on:change={async () => {
 							console.log('checked: ' + task.id);
