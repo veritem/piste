@@ -1,6 +1,5 @@
 <script>
-import TodoSideBar from "$lib/components/TodoSideBar.svelte";
-
+	import TodoSideBar from '$lib/components/TodoSideBar.svelte';
 </script>
 
 <svelte:head>
@@ -8,6 +7,6 @@ import TodoSideBar from "$lib/components/TodoSideBar.svelte";
 </svelte:head>
 
 <section class="flex">
-	<TodoSideBar/>
+	<TodoSideBar />
 	<h1>Todos</h1>
 </section>

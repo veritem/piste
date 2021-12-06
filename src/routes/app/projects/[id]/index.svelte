@@ -31,6 +31,22 @@
 	let isTaskFormOpen = false;
 
 	let taskName: string = '';
+
+	async function updateProject() {
+		let res = await fetch(`/app/projects/${project.id}.json`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name: project.name,
+				description: project.description
+			})
+		});
+		if (res.ok) {
+			project = await res.json();
+		}
+	}
 </script>
 
 <svelte:head>
@@ -41,9 +57,18 @@
 	<ProjectSidebar {projects} />
 	<section>
 		<div class="py-4">
-			<h3 class="text-3xl font-bold">{project.name}</h3>
+			<h3
+				class="text-3xl font-bold focus:outline-none focus:border-gray-200 focus:border"
+				contenteditable="true"
+				bind:innerHTML={project.name}
+			/>
 
-			<h4 class="text-base">{project.description}</h4>
+			<p
+				class="text-base focus:outline-none"
+				contenteditable="true"
+				bind:innerHTML={project.description}
+				on:mouseleave={updateProject}
+			/>
 		</div>
 
 		<h5 class="font-bold py-4">Tasks</h5>
@@ -53,8 +78,8 @@
 				<div>
 					<input
 						type="checkbox"
-	  id={task.id}
-	  class="rounded-full
+						id={task.id}
+						class="rounded-full
                           border-gray-300
                           text-blue-600
                           shadow-sm
@@ -83,7 +108,9 @@
 							}
 						}}
 					/>
-					<label for={task.id}>{task.name} </label>
+					<label for={task.id} class={`${task.completed ? 'line-through' : ''}`}
+						>{task.name}
+					</label>
 				</div>
 			{/each}
 		{:else}

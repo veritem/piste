@@ -24,7 +24,8 @@
 
 <section class="font-primary flex space-x-8">
 	<ProjectSidebar {projects} />
-	<div class=" italic py-4 font-bold">
-		<p>No project selected</p>
+	<div class="py-5 grid place-content-center text-center w-full">
+		<p>You have {projects.length} {projects.length > 1 ? 'projects' : 'project'}</p>
+		<p class="font-bold">None is selected</p>
 	</div>
 </section>

@@ -48,10 +48,7 @@
 			<p>no project added yet!</p>
 		</div>
 	{/if}
-	<form
-		class="flex flex-col gap-4 w-full justify-center"
-		on:submit|preventDefault={handlesubmit}
-	>
+	<form class="flex flex-col gap-4 w-full justify-center" on:submit|preventDefault={handlesubmit}>
 		<input
 			type="text"
 			placeholder="project name"

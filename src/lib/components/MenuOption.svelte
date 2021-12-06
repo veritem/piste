@@ -6,6 +6,6 @@
 	{#if text}
 		{text}
 	{:else}
-		<slot/>
+		<slot />
 	{/if}
 </div>

@@ -1,21 +1,29 @@
 <script>
 	import { getContext } from 'svelte';
-	
+
 	export let isDisabled = false;
 	export let text = '';
-	
+
 	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();	
-	
+	const dispatch = createEventDispatcher();
+
 	const { dispatchClick } = getContext({});
-	
+
 	function handleClick(e) {
 		if (isDisabled) return;
-		
+
 		dispatch('click');
 		dispatchClick();
 	}
 </script>
+
+<div class:disabled={isDisabled} on:click={handleClick}>
+	{#if text}
+		{text}
+	{:else}
+		<slot />
+	{/if}
+</div>
 
 <style>
 	div {
@@ -36,15 +44,3 @@
 		background: white;
 	}
 </style>
-
-<div 
-  class:disabled={isDisabled}
-  on:click={handleClick}
->
-	{#if text}
-		{text}
-	{:else}
-		<slot />
-	{/if}
-</div>
-

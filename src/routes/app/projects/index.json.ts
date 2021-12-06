@@ -8,6 +8,9 @@ export const get: RequestHandler = async (req: Request<Locals>) => {
 		},
 		orderBy: {
 			createdAt: 'desc'
+		},
+		where: {
+			userId: req.locals.userId
 		}
 	});
 
@@ -36,8 +39,6 @@ export const post: RequestHandler<Locals, FormData> = async (req: Request<Locals
 			userId: req.locals.userId
 		}
 	});
-
-	console.log(data);
 
 	return {
 		status: 201,
