@@ -5,6 +5,9 @@ export const get: RequestHandler = async (request: Request<Locals>) => {
 	const habits = await prisma.habit.findMany({
 		where: {
 			userId: request.locals.userId
+		},
+		include: {
+			strikes: true
 		}
 	});
 

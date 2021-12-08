@@ -20,7 +20,7 @@ export async function post(request: Request) {
 			'set-cookie': `session=${
 				session.user.email
 			}; Path=/; HttpOnly; Secure; SameSite=Strict; Expires=${new Date(
-				session.expires_at * 1000
+				session.expires_at * 10000
 			).toUTCString()};`
 		}
 	};

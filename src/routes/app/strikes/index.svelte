@@ -18,7 +18,6 @@
 
 <script lang="ts">
 	import Modal from '$lib/components/Modal.svelte';
-	import { onMount } from 'svelte';
 	import type {Habit} from "@prisma/client"
 
 	export let habits: Habit[];
@@ -33,18 +32,28 @@
 	<title>strikes</title>
 </svelte:head>
 
-<section>
-	<h1>Stikes will go here</h1>
+<section class="py-12 px-4">
 
-	<section>
-		<p>A list of habits</p>
-	</section>
 
+	<div class="flex justify-end">
 	<button class="bg-secondary py-4 px-2 rounded-sm shadow-md" on:click={() => modal.show()}
 		>add a new habit</button
-	>
+	></div>
 
+	<!--
 	<pre>{JSON.stringify(habits,null,2)}</pre>
+	-->
+
+	<section class="py-4 px-12 gap-4 grid grid-cols-5">
+      {#each habits as habit}
+		  <!--<a href=`/app/strikes/${habit.name}` class="shadow-sm px-4 block border-2 border-black">
+			  <h2 class="capitalize font-bold">{habit.name}</h2>
+			  <p class="py-3">Strikes {habit?.strikes.length}</p>
+		  </a>-->
+      {/each}
+
+	</section>
+
 
 	<Modal bind:this={modal}>
 		<h1 class="capitalize font-bold mt-7">add a new habit</h1>
