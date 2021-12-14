@@ -34,12 +34,12 @@
 
 <section class="py-12 px-4">
 	<div class="flex justify-end">
-		<button class="bg-secondary py-4 px-2 rounded-sm shadow-md" on:click={() => modal.show()}
+		<button class="bg-secondary py-4 px-6 rounded-md shadow-md" on:click={() => modal.show()}
 			>add a new habit</button
 		>
 	</div>
 
-	<section class="py-4 px-12 gap-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5">
+	<section class="py-4 px-12 md:gap-4 gap-8 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5">
 		{#each habits as habit}
 			<a
 				href={`/app/habits/${habit.id}`}

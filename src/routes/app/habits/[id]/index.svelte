@@ -34,5 +34,19 @@
 	{:else}
 	   <p>No strikes</p>
 	{/if}
+
+
+	<table class="border-collapse border border-gray-400 mt-10">
+     		<thead>
+			<tr>
+				<th class="border border-gray-300 px-6 py-5">Date</th>
+				<th class="border border-gray-300 px-6 py-5">Strike</th>
+			</tr>
+		</thead>
+		<tbody>
+		   <td class="border border-gray-300 px-6 py-5">test</td>
+		   <td class="border border-gray-300 px-6 py-5">test</td>
+		</tbody>
+	</table>
 	
 </section>
