@@ -1,28 +1,32 @@
-<script>
-	import Multiselect from './MultiSelect.svelte';
-	import supabase from '$lib/utils/db';
+<script lang="ts">
+	import Select from 'svelte-select';
 
-	const daysOfTheWeek = [
-		'Monday',
-		'Tuesday',
-		'Wednesday',
-		'Thursday',
-		'Friday',
-		'Saturday',
-		'Sunday'
-	];
+	const items = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-	let selected;
+	import { page } from '$app/stores';
 
-	let name;
+	type Item = {
+		label: string;
+		value: string;
+		index: number;
+	};
+
+	let selected: Item[];
+
+	let name: string;
 
 	async function submit() {
-		const { data, error } = await supabase.from('strikes').insert({ title: name, days: selected });
-		if (error) {
-			alert(error.message);
-		}
-		alert('Inserted');
-		if (data) {
+		const selectedItems = selected.map((item) => item.value);
+
+		const response = await fetch(`/app/habits/${$page.params.id}/strikes.json`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ name, days: selectedItems })
+		});
+
+		if (response.ok) {
 			selected = [];
 			name = '';
 		}
@@ -36,19 +40,15 @@
 		<input
 			type="name"
 			bind:value={name}
-			class="block w-full px-2 py-3 border-b-2 border-purple-500  focus:outline-none"
+			class="block w-full px-2 py-1 border-b-2 border-secondary focus:outline-none"
 			id="title"
 			required
 			placeholder="Enter title here"
 		/><br />
 		<div class="pb-10">
 			<label for="tile">Days of the week</label>
-			<Multiselect id="days" bind:value={selected} bind:selected>
-				{#each daysOfTheWeek as day}
-					<option value={day}>{day}</option>
-				{/each}
-			</Multiselect>
+			<Select {items} isMulti={true} bind:value={selected} />
 		</div>
-		<input type="submit" class="w-full bg-purple-900 text-white px-4 py-3 rounded cursor-pointer" />
+		<input type="submit" class="w-full bg-secondary text-white px-4 py-3 rounded cursor-pointer" />
 	</form>
 </div>

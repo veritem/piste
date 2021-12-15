@@ -11,7 +11,12 @@ module.exports = {
 			primary: '#202020',
 			secondary: '#ffd100'
 		}),
-		extend: {},
+		extend: {
+			colors: {
+				secondary: '#ffd100',
+				primary: '#202020'
+			}
+		},
 		fontFamily: {
 			primary: ['Outfit', 'sans-serif']
 		}

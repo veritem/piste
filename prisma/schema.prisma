@@ -53,7 +53,6 @@ model Habit {
 model Strike {
   id          String     @id @default(uuid())
   createdAt   DateTime?  @default(now()) @db.Timestamptz(6)
-  title       String
   updatedAt   DateTime   @updatedAt
   days        String[]
   Habit       Habit?     @relation(fields: [habitId], references: [id])

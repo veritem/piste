@@ -2,7 +2,6 @@
 	export async function load({ fetch }) {
 		const resp = await fetch(`/app/habits.json`);
 
-
 		if (resp.ok) {
 			return {
 				props: {
