@@ -1,10 +1,10 @@
 import prisma from '$lib/utils/prisma';
-import type { RequestHandler } from '@sveltejs/kit';
+import type { RequestHandler, Request } from '@sveltejs/kit';
 
-export const post: RequestHandler = async ({ params, body }) => {
-	let { name } = body;
+export const post: RequestHandler = async (req: Request<Locals>) => {
+	let { name } = req.body;
 	const task = await prisma.task.create({
-		data: { name, projectId: params?.id }
+		data: { name, projectId: req.params?.id, userId: req.locals.userId }
 	});
 
 	return {

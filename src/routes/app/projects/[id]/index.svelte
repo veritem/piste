@@ -24,6 +24,7 @@
 <script lang="ts">
 	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
 	import type { Project, Task } from '@prisma/client';
+	import TodoItem from '$lib/components/TodoItem.svelte';
 	export let project: Project;
 	export let projects: Project[];
 	export let tasks: Task[];
@@ -75,43 +76,7 @@
 
 		{#if tasks.length > 0}
 			{#each tasks as task}
-				<div>
-					<input
-						type="checkbox"
-						id={task.id}
-						class="rounded-full
-                          border-gray-300
-                          text-blue-600
-                          shadow-sm
-                          focus:border-blue-300
-                          focus:ring
-                          focus:ring-offset-0
-                          focus:ring-blue-200
-                          focus:ring-opacity-50"
-						checked={task.completed}
-						on:change={async () => {
-							console.log('checked: ' + task.id);
-							let resp = await fetch(`/app/projects/${project.id}/tasks/${task.id}.json`, {
-								method: 'PATCH',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									completed: !task.completed,
-									name: task.name
-								})
-							});
-
-							if (resp.ok) {
-								let task = await resp.json();
-								tasks = tasks.map((t) => (t.id === task.id ? task : t));
-							}
-						}}
-					/>
-					<label for={task.id} class={`${task.completed ? 'line-through' : ''}`}
-						>{task.name}
-					</label>
-				</div>
+		        <TodoItem {task} />
 			{/each}
 		{:else}
 			<p class="text-sm italic">No tasks</p>

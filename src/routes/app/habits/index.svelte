@@ -19,8 +19,13 @@
 <script lang="ts">
 	import Modal from '$lib/components/Modal.svelte';
 	import type { Habit } from '@prisma/client';
+	import HabitStore from '$lib/stores/habits';
 
 	export let habits: Habit[];
+
+	HabitStore.subscribe((value) => {
+		value = habits;
+	});
 
 	let modal;
 
