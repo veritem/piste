@@ -23,9 +23,7 @@
 
 	export let habits: Habit[];
 
-	HabitStore.subscribe((value) => {
-		value = habits;
-	});
+	HabitStore.set(habits);
 
 	let modal;
 
