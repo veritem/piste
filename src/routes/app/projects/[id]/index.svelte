@@ -76,7 +76,7 @@
 
 		{#if tasks.length > 0}
 			{#each tasks as task}
-		        <TodoItem {task} />
+				<TodoItem {task} />
 			{/each}
 		{:else}
 			<p class="text-sm italic">No tasks</p>

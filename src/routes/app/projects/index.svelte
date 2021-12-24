@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
+	import type { Project } from '@prisma/client';
 	import type { Load } from '@sveltejs/kit';
 	export const load: Load = async ({ fetch }) => {
 		let res = await fetch('/app/projects.json');
@@ -13,9 +15,8 @@
 </script>
 
 <script lang="ts">
-	import type { Project } from '@prisma/client';
-	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
-	export let projects: Project[] = [];
+    export let projects: Project[];
+
 </script>
 
 <svelte:head>
@@ -25,7 +26,7 @@
 <section class="font-primary flex space-x-8">
 	<ProjectSidebar {projects} />
 	<div class="py-5 grid place-content-center text-center w-full">
-		<p>You have {projects.length} {projects.length > 1 ? 'projects' : 'project'}</p>
+		<p class="text-xl">You have {projects.length} {projects.length > 1 ? 'projects' : 'project'}</p>
 		<p class="font-bold">None is selected</p>
 	</div>
 </section>
