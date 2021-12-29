@@ -29,7 +29,7 @@
 	export let activeProject = undefined;
 </script>
 
-<aside class="w-72  shadow-sm px-4  bg-primary h-screen font-primary">
+<aside class="w-72  shadow-sm px-4  bg-primary min-h-full font-primary">
 	{#if projects.length > 0}
 		<ul class="py-3">
 			{#each projects as project}
@@ -59,7 +59,6 @@
 		<input
 			type="text"
 			placeholder="project description"
-			required
 			class="rounded-sm"
 			bind:value={project_description}
 		/>

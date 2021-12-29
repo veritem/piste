@@ -22,7 +22,7 @@ model User {
 model Project {
   id          String   @id @default(uuid())
   name        String
-  description String
+  description String?
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
@@ -38,7 +38,7 @@ model Task {
   Sheduled  DateTime? @default(dbgenerated("NOW() + interval  ' 1 ' day"))
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  userId    String? 
+  userId    String?
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   completed Boolean @default(false)
 }
