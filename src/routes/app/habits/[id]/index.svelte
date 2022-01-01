@@ -1,7 +1,7 @@
 <script context="module">
-	export const load = async ({ page, fetch }) => {
-		const resp = await fetch(`/app/habits/${page.params.id}.json`);
-		const strikes = await fetch(`/app/habits/${page.params.id}/strikes.json`);
+	export const load = async ({ params, fetch }) => {
+		const resp = await fetch(`/app/habits/${params.id}.json`);
+		const strikes = await fetch(`/app/habits/${params.id}/strikes.json`);
 		return {
 			props: {
 				habit: await resp.json(),
@@ -14,7 +14,7 @@
 <script lang="ts">
 	import CreateStrike from '$lib/components/CreateStrike.svelte';
 	import Modal from '$lib/components/Modal.svelte';
-	import type { Habit, Strike } from '@prisma/client';
+	import type { Habit,Strike } from '@prisma/client';
 	import { onMount } from 'svelte';
 
 	export let habit: Habit;

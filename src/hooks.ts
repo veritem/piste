@@ -1,7 +1,7 @@
-import prisma from '$lib/utils/prisma';
-import type { Handle, Request } from '@sveltejs/kit';
-import cookie from 'cookie';
-import type { Locals } from './global';
+import prisma from '$lib/utils/prisma'
+import type { Handle, Request } from '@sveltejs/kit'
+import cookie from 'cookie'
+import type { Locals } from './global'
 
 export const getSession = (request: Request<Locals>) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
@@ -35,8 +35,8 @@ export const handle: Handle = async ({ request, resolve }) => {
 		}
 	}
 
-	if (request.query.has('_method')) {
-		request.method = request.query.get('_method').toUpperCase();
+	if (request.url.searchParams.has('_method')) {
+		request.method = request.url.searchParams.get('_method').toUpperCase();
 	}
 
 	const response = await resolve(request);

@@ -1,7 +1,7 @@
 <script context="module">
-	export async function load({ page, fetch }) {
-		const tasks = await fetch(`/app/projects/${page.params.id}/tasks.json`);
-		const res = await fetch(`/app/projects/${page.params.id}.json`);
+	export async function load({ params, fetch }) {
+		const tasks = await fetch(`/app/projects/${params.id}/tasks.json`);
+		const res = await fetch(`/app/projects/${params.id}.json`);
 		let projectsResp = await fetch('/app/projects.json');
 
 		if (res.ok) {
@@ -23,8 +23,8 @@
 
 <script lang="ts">
 	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
-	import type { Project, Task } from '@prisma/client';
 	import TodoItem from '$lib/components/TodoItem.svelte';
+	import type { Project,Task } from '@prisma/client';
 	export let project: Project;
 	export let projects: Project[];
 	export let tasks: Task[];
