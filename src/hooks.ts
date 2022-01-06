@@ -1,15 +1,18 @@
-import prisma from '$lib/utils/prisma'
-import type { Handle, Request } from '@sveltejs/kit'
-import cookie from 'cookie'
-import type { Locals } from './global'
+import prisma from '$lib/utils/prisma';
+import type { Handle, Request } from '@sveltejs/kit';
+import cookie from 'cookie';
+import type { Locals } from './global';
 
 export const getSession = (request: Request<Locals>) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 	const userId = cookies['userId'] ?? undefined;
-	return {
-		userId,
-		user: request.locals.user ?? undefined
-	};
+
+	return request.locals.user
+		? {
+				userId,
+				user: request.locals.user ?? undefined
+		  }
+		: {};
 };
 
 export const handle: Handle = async ({ request, resolve }) => {

@@ -1,9 +1,15 @@
 <script context="module">
-	export function load({ request, session }) {
+	export function load({ session }) {
+		if (session.user || session.userId) {
+			return {
+				user: session.user,
+				userId: session.userId
+			};
+		}
+
 		return {
-			props: {
-				user: session.user
-			}
+			redirect: '/',
+			status: 302
 		};
 	}
 </script>

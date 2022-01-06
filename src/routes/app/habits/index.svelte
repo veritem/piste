@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import Modal from "$lib/components/Modal.svelte";
+	import Modal from '$lib/components/Modal.svelte';
 	import HabitStore from '$lib/stores/habits';
 	import type { Habit } from '@prisma/client';
 	import { onMount } from 'svelte';
@@ -25,8 +25,8 @@
 	export let habits: Habit[];
 
 	onMount(() => {
-	HabitStore.set(habits);
-	})
+		HabitStore.set(habits);
+	});
 
 	let modal;
 
@@ -56,7 +56,7 @@
 		{/each}
 	</section>
 
-		<Modal bind:this={modal}>
+	<Modal bind:this={modal}>
 		<h1 class="capitalize font-bold mt-7">add a new habit</h1>
 
 		<form
@@ -69,11 +69,11 @@
 					})
 				});
 
-				if(resp.ok){
-				 name = '';
-				 let response = await resp.json();
-				 habits.push(response.habit)
-				 modal.hide();
+				if (resp.ok) {
+					name = '';
+					let response = await resp.json();
+					habits.push(response.habit);
+					modal.hide();
 				}
 			}}
 		>
@@ -84,5 +84,4 @@
 			<button class="bg-secondary py-4 px-2 rounded-sm shadow-md" type="submit">add</button>
 		</form>
 	</Modal>
-
 </section>

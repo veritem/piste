@@ -1,5 +1,6 @@
-import type { RequestHandler, Request } from '@sveltejs/kit';
 import prisma from '$lib/utils/prisma';
+import type { Request, RequestHandler } from '@sveltejs/kit';
+import type { Locals } from 'src/global';
 
 export const get: RequestHandler = async (request: Request<Locals>) => {
 	const habits = await prisma.habit.findMany({

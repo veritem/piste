@@ -24,7 +24,7 @@
 <script lang="ts">
 	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
 	import TodoItem from '$lib/components/TodoItem.svelte';
-	import type { Project,Task } from '@prisma/client';
+	import type { Project, Task } from '@prisma/client';
 	export let project: Project;
 	export let projects: Project[];
 	export let tasks: Task[];

@@ -14,7 +14,7 @@
 <script lang="ts">
 	import CreateStrike from '$lib/components/CreateStrike.svelte';
 	import Modal from '$lib/components/Modal.svelte';
-	import type { Habit,Strike } from '@prisma/client';
+	import type { Habit, Strike } from '@prisma/client';
 	import { onMount } from 'svelte';
 
 	export let habit: Habit;

@@ -15,8 +15,7 @@
 </script>
 
 <script lang="ts">
-    export let projects: Project[];
-
+	export let projects: Project[];
 </script>
 
 <svelte:head>
