@@ -2,8 +2,8 @@
 
 #### Goals for the app
 
-- Better todolist
-- Better habits tracking using beatiful statistics
+- Better todo list
+- Better habits tracking using beautiful statistics
 - Self hostable
 - Heavily Inspired by [Todoist](https://todoist.com) and [Streaks](https://streaks.app/)
 
