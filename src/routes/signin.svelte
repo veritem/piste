@@ -1,6 +1,6 @@
 <script context="module">
 	export async function load({ session }) {
-		if (session) {
+		if (session.userId) {
 			return {
 				status: 302,
 				redirect: '/app'

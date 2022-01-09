@@ -2,13 +2,15 @@
 	export function load({ session }) {
 		if (session.user || session.userId) {
 			return {
-				user: session.user,
-				userId: session.userId
+				props: {
+					user: session.user,
+					userId: session.userId
+				}
 			};
 		}
 
 		return {
-			redirect: '/',
+			redirect: '/signin',
 			status: 302
 		};
 	}
