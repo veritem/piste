@@ -28,7 +28,7 @@
 		"eslint": "^8.6.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.1",
-		"faker": "^5.5.3",
+		"faker": "^6.6.6",
 		"postcss": "^8.4.5",
 		"postcss-load-config": "^3.1.0",
 		"prettier": "~2.5.1",
