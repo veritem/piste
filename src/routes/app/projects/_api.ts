@@ -1,6 +1,5 @@
 import prisma from '$lib/utils/prisma';
 import type { Project } from '@prisma/client';
-import type { Request } from '@sveltejs/kit';
 
 export async function api(request: Request, resource: string, data?: Project) {
 	let status = 500;

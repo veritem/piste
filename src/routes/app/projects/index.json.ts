@@ -1,7 +1,7 @@
 import prisma from '$lib/utils/prisma';
-import type { Request, RequestHandler } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async (req: Request<Locals>) => {
+export const get: RequestHandler = async ({ request, locals }) => {
 	const data = await prisma.project.findMany({
 		include: {
 			user: true
@@ -10,7 +10,7 @@ export const get: RequestHandler = async (req: Request<Locals>) => {
 			createdAt: 'desc'
 		},
 		where: {
-			userId: req.locals.userId
+			userId: locals.userId
 		}
 	});
 
@@ -20,10 +20,8 @@ export const get: RequestHandler = async (req: Request<Locals>) => {
 	};
 };
 
-export const post: RequestHandler<Locals, FormData> = async (req: Request<Locals>) => {
-	console.log(req.locals.userId);
-
-	if (!req.locals.userId) {
+export const post: RequestHandler = async ({ locals, request }) => {
+	if (!locals.userId) {
 		return {
 			status: 401,
 			body: {
@@ -32,13 +30,13 @@ export const post: RequestHandler<Locals, FormData> = async (req: Request<Locals
 		};
 	}
 
-	let { name, description } = req.body;
+	let body = await request.formData();
 
 	let data = await prisma.project.create({
 		data: {
-			name,
-			description,
-			userId: req.locals.userId
+			name: body.get('name').toString(),
+			description: body.get('description').toString(),
+			userId: locals.userId
 		}
 	});
 

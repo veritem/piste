@@ -1,32 +1,29 @@
 import prisma from '$lib/utils/prisma';
-import type { Handle, Request } from '@sveltejs/kit';
+import type { GetSession } from '@sveltejs/kit';
 import cookie from 'cookie';
-import type { Locals } from './global';
 
-export const getSession = (request: Request<Locals>) => {
-	const cookies = cookie.parse(request.headers.cookie || '');
+export const getSession: GetSession = ({ locals, request }) => {
+	const cookies = cookie.parse(request.headers.get('cookie') || '');
 	const userId = cookies['userId'] ?? undefined;
 
-	return request.locals.user
+	return locals.user
 		? {
-			userId,
-			user: request.locals.user ?? undefined
-		}
+				userId,
+				user: locals.user ?? undefined
+		  }
 		: {};
 };
 
-export const handle: Handle = async ({ event, resolve }) => {
+export const handle = async ({ event, resolve, locals }) => {
+	const response = await resolve(event);
+	const cookies = cookie.parse(response.headers.get('cookie') || '');
 
+	locals.userId = cookies.userId;
 
-	const response = await resolve(event)
-	const cookies = cookie.parse(response.headers.get("cookie") || '');
-
-	response.locals.userId = cookies.userId;
-
-	if (request.locals.userId) {
+	if (locals.userId) {
 		const user = await prisma.user.findUnique({
 			where: {
-				uid: request.locals.userId
+				uid: locals.userId
 			},
 			include: {
 				tasks: true,
@@ -36,15 +33,15 @@ export const handle: Handle = async ({ event, resolve }) => {
 		});
 
 		if (user) {
-			request.locals.userId = user.id;
-			request.locals.user = user;
+			locals.userId = user.id;
+			locals.user = user;
 		}
 	}
 
-	if (request.url.searchParams.has('_method')) {
-		request.method = request.url.searchParams.get('_method').toUpperCase();
+	if (response.url.search('_method')) {
+		// response
+		response.method = response.url.searchParams.get('_method').toUpperCase();
 	}
-
 
 	return response;
 };
