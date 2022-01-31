@@ -9,16 +9,19 @@ export const getSession = (request: Request<Locals>) => {
 
 	return request.locals.user
 		? {
-				userId,
-				user: request.locals.user ?? undefined
-		  }
+			userId,
+			user: request.locals.user ?? undefined
+		}
 		: {};
 };
 
-export const handle: Handle = async ({ request, resolve }) => {
-	const cookies = cookie.parse(request.headers.cookie || '');
+export const handle: Handle = async ({ event, resolve }) => {
 
-	request.locals.userId = cookies.userId;
+
+	const response = await resolve(event)
+	const cookies = cookie.parse(response.headers.get("cookie") || '');
+
+	response.locals.userId = cookies.userId;
 
 	if (request.locals.userId) {
 		const user = await prisma.user.findUnique({
@@ -42,7 +45,6 @@ export const handle: Handle = async ({ request, resolve }) => {
 		request.method = request.url.searchParams.get('_method').toUpperCase();
 	}
 
-	const response = await resolve(request);
 
 	return response;
 };
