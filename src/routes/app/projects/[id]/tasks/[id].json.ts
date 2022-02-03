@@ -1,5 +1,5 @@
-import type { RequestHandler } from '@sveltejs/kit';
 import prisma from '$lib/utils/prisma';
+import type { RequestHandler } from '@sveltejs/kit';
 
 export const get: RequestHandler = async () => {
 	return {
@@ -10,8 +10,8 @@ export const get: RequestHandler = async () => {
 	};
 };
 
-export const patch: RequestHandler = async ({ params, body }) => {
-	let { name, completed } = body;
+export const patch: RequestHandler = async ({ params, request }) => {
+	let { name, completed } = await request.json();
 
 	const task = await prisma.task.update({
 		where: { id: params.id },
@@ -25,6 +25,8 @@ export const patch: RequestHandler = async ({ params, body }) => {
 };
 
 export const del: RequestHandler = async ({ request, params }) => {
+	throw new Error('Fix this plz');
+
 	return {
 		status: 200,
 		body: null

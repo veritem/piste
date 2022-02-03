@@ -1,11 +1,8 @@
 import supabase from '$lib/utils/db';
-import type { Request } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export async function post(request: Request) {
-	let { email, password } = JSON.parse(request.body);
-
-	// set supabase cookies
-	// await supabase.setCookies(request);
+export const post: RequestHandler = async ({ request }) => {
+	let { email, password } = await request.json();
 
 	const { session, error } = await supabase.auth.signIn({ email, password });
 
@@ -18,7 +15,6 @@ export async function post(request: Request) {
 
 	return {
 		status: 200,
-		body: 'success',
 		headers: {
 			'set-cookie': `userId=${
 				session.user.id
@@ -27,4 +23,4 @@ export async function post(request: Request) {
 			).toUTCString()};`
 		}
 	};
-}
+};

@@ -1,7 +1,7 @@
 import prisma from '$lib/utils/prisma';
 import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async ({ request, locals }) => {
+export const get: RequestHandler = async ({ locals }) => {
 	const data = await prisma.project.findMany({
 		include: {
 			user: true

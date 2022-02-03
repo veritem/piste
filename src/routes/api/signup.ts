@@ -1,8 +1,8 @@
 import supabase from '$lib/utils/db';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export async function post(request: Request) {
-	let email = request.body.get('email');
-	let password = request.body.get('password');
+export const post: RequestHandler = async ({ request }) => {
+	const { email, password } = await request.json();
 
 	const { session, error } = await supabase.auth.signUp({ email, password });
 
@@ -24,4 +24,4 @@ export async function post(request: Request) {
 			).toUTCString()};`
 		}
 	};
-}
+};

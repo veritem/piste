@@ -15,16 +15,16 @@ export const get: RequestHandler = async (request) => {
 	return { status: 404, body: { message: 'Project not found' } };
 };
 
-export const post: RequestHandler<Locals, FormData> = async (request) => {
-	console.log(request.params);
+export const post: RequestHandler = async ({ params }) => {
+	console.log(params);
 
 	return { status: 201, body: [] };
 };
 
-export const put: RequestHandler<Locals, FormData> = async (request) => {
+export const put: RequestHandler = async ({ params, request }) => {
 	let existsById = prisma.project.findFirst({
 		where: {
-			id: request.params.id
+			id: params.id
 		}
 	});
 
@@ -37,13 +37,15 @@ export const put: RequestHandler<Locals, FormData> = async (request) => {
 		};
 	}
 
+	const formData = await request.formData();
+
 	let project = await prisma.project.update({
 		where: {
-			id: request.params.id
+			id: params.id
 		},
 		data: {
-			name: request.body.name,
-			description: request.body.description
+			name: formData.get('name').toString(),
+			description: formData.get('description').toString()
 		}
 	});
 	return {
