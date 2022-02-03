@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Select from 'svelte-select';
-
-	const items = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
+	import { invalidate } from '$app/navigation';
 	import { page } from '$app/stores';
+	import Select from 'svelte-select';
 
 	type Item = {
 		label: string;
@@ -14,6 +12,7 @@
 	let selected: Item[];
 
 	let name: string;
+	const items = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 	async function submit() {
 		const selectedItems = selected.map((item) => item.value);
@@ -29,6 +28,7 @@
 		if (response.ok) {
 			selected = [];
 			name = '';
+			invalidate(`/app/habits/${$page.params.id}/strikes.json`);
 		}
 	}
 </script>

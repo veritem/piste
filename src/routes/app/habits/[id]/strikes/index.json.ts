@@ -1,14 +1,14 @@
-import type { RequestHandler, Request } from '@sveltejs/kit';
 import prisma from '$lib/utils/prisma';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const post: RequestHandler = async (req: Request) => {
-	console.log(req.body);
+export const post: RequestHandler = async ({ request, params }) => {
+	const body = await request.json();
 
 	let strike = await prisma.strike.create({
 		data: {
-			name: req.body.name ?? '',
-			days: req.body.days ?? [],
-			habitId: req.params.id
+			name: body.name ?? '',
+			days: body.days ?? [],
+			habitId: params.id
 		}
 	});
 
@@ -18,10 +18,10 @@ export const post: RequestHandler = async (req: Request) => {
 	};
 };
 
-export const get = async (req: Request) => {
+export const get: RequestHandler = async ({ params }) => {
 	let strikes = await prisma.strike.findMany({
 		where: {
-			habitId: req.params.id
+			habitId: params.id
 		}
 	});
 

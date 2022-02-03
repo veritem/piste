@@ -1,10 +1,10 @@
-import type { RequestHandler, Request } from '@sveltejs/kit';
 import prisma from '$lib/utils/prisma';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async (request: Request<Locals>) => {
+export const get: RequestHandler = async ({ locals, params }) => {
 	const habit = await prisma.habit.findFirst({
 		where: {
-			id: request.params.id
+			id: params.id
 		},
 		include: {
 			strikes: true

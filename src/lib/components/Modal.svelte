@@ -26,6 +26,7 @@
 {/if}
 
 <style>
+	/* //TODO: Modal here */
 	.modal-wrapper {
 		background-color: rgb(0, 0, 0);
 		background-color: rgba(0, 0, 0, 0.6);

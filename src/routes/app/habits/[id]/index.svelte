@@ -2,6 +2,7 @@
 	export const load = async ({ params, fetch }) => {
 		const resp = await fetch(`/app/habits/${params.id}.json`);
 		const strikes = await fetch(`/app/habits/${params.id}/strikes.json`);
+
 		return {
 			props: {
 				habit: await resp.json(),
@@ -15,14 +16,9 @@
 	import CreateStrike from '$lib/components/CreateStrike.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import type { Habit, Strike } from '@prisma/client';
-	import { onMount } from 'svelte';
 
 	export let habit: Habit;
 	export let strikes: Strike[];
-
-	onMount(() => {
-		console.log(strikes);
-	});
 
 	let modal;
 </script>
@@ -49,18 +45,32 @@
 		>
 	</div>
 
-	<table class="border-collapse border border-gray-400 mt-10">
-		<thead>
-			<tr>
-				<th class="border border-gray-300 px-6 py-5">Date</th>
-				<th class="border border-gray-300 px-6 py-5">Strike</th>
-			</tr>
-		</thead>
-		<tbody>
-			<td class="border border-gray-300 px-6 py-5">test</td>
-			<td class="border border-gray-300 px-6 py-5">test</td>
-		</tbody>
-	</table>
+	{#if strikes.length > 1}
+		<table class="border-collapse border border-gray-400 mt-10">
+			<thead>
+				<tr>
+					<th class="border border-gray-300 px-6 py-5">Name</th>
+					<th class="border border-gray-300 px-6 py-5">description</th>
+					<th class="border border-gray-300 px-6 py-5">Days</th>
+					<th class="border border-gray-300 px-6 py-5">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				{#each strikes as strike}
+					<tr>
+						<td class="border border-gray-300 px-6 py-5">{strike.name}</td>
+						<td class="border border-gray-300 px-6 py-5">{strike.description}</td>
+						<td class="border border-gray-300 px-6 py-5">{strike.days}</td>
+						<td class="border border-gray-300 px-6 py-5">
+							<input type="checkbox" />
+						</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	{:else}
+		<p class="py-4 italic">No strike yet</p>
+	{/if}
 
 	<Modal bind:this={modal}>
 		<CreateStrike />
