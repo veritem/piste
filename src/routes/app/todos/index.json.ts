@@ -1,10 +1,10 @@
 import prisma from '$lib/utils/prisma';
-import type { RequestHandler, Request } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async (req: Request<Locals>) => {
+export const get: RequestHandler = async ({ locals }) => {
 	let tasks = await prisma.task.findMany({
 		where: {
-			userId: req.locals.userId,
+			userId: locals.userId,
 			Sheduled: {
 				gt: new Date(),
 				lt: new Date(new Date().getTime() + 86400000)
@@ -15,15 +15,12 @@ export const get: RequestHandler = async (req: Request<Locals>) => {
 		}
 	});
 
-	// if (project) {
-	// 	return {status: 200, body: project};
-	// }
+
 
 	return { status: 404, body: tasks };
 };
 
-export const post: RequestHandler<Locals, FormData> = async (request) => {
-	console.log(request.params);
+export const post: RequestHandler = async ({ params }) => {
 
 	return { status: 201, body: [] };
 };
