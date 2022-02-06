@@ -24,14 +24,21 @@
 <script lang="ts">
 	import ProjectSidebar from '$lib/components/ProjectSidebar.svelte';
 	import TodoItem from '$lib/components/TodoItem.svelte';
+	import { taskStore } from '$lib/stores/tasks';
 	import type { Project, Task } from '@prisma/client';
+	import { onMount } from 'svelte';
 	export let project: Project;
 	export let projects: Project[];
-	export let tasks: Task[];
+	export let tasksFromApi: Task[];
+	let tasks: Task[];
 
 	let isTaskFormOpen = false;
 
 	let taskName: string = '';
+
+	onMount(() => {
+		taskStore.set(tasksFromApi);
+	});
 
 	async function updateProject() {
 		let res = await fetch(`/app/projects/${project.id}.json`, {
@@ -48,6 +55,10 @@
 			project = await res.json();
 		}
 	}
+
+	taskStore.subscribe((value) => {
+		tasks = value;
+	});
 </script>
 
 <svelte:head>
@@ -68,7 +79,6 @@
 				class="text-base focus:outline-none"
 				contenteditable="true"
 				bind:innerHTML={project.description}
-				on:mouseleave={updateProject}
 			/>
 		</div>
 

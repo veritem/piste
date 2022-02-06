@@ -37,6 +37,10 @@ export const post: RequestHandler = async ({ locals, request }) => {
 			name: body.get('name').toString(),
 			description: body.get('description').toString(),
 			userId: locals.userId
+		},
+		include: {
+			user: true,
+			tasks: true
 		}
 	});
 

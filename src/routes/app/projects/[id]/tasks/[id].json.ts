@@ -11,7 +11,11 @@ export const get: RequestHandler = async () => {
 };
 
 export const patch: RequestHandler = async ({ params, request }) => {
+
+	console.log("here")
+
 	let { name, completed } = await request.json();
+
 
 	const task = await prisma.task.update({
 		where: { id: params.id },
@@ -25,7 +29,6 @@ export const patch: RequestHandler = async ({ params, request }) => {
 };
 
 export const del: RequestHandler = async ({ request, params }) => {
-	throw new Error('Fix this plz');
 
 	return {
 		status: 200,

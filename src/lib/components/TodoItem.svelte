@@ -1,6 +1,11 @@
 <script lang="ts">
+	import { taskStore } from '$lib/stores/tasks';
 	import type { Task } from '@prisma/client';
+	import { get } from 'svelte/store';
 	export let task: Task;
+	let tasks: Task[];
+
+	$: tasks = get(taskStore);
 </script>
 
 <div>
@@ -18,6 +23,7 @@
                           focus:ring-opacity-50"
 		checked={task.completed}
 		on:change={async () => {
+			tasks = tasks.map((t) => (t.id === task.id ? task : t));
 			let resp = await fetch(`/app/projects/${task.projectId}/tasks/${task.id}.json`, {
 				method: 'PATCH',
 				headers: {
@@ -28,11 +34,6 @@
 					name: task.name
 				})
 			});
-
-			if (resp.ok) {
-				let task = await resp.json();
-				//tasks = tasks.map((t) => (t.id === task.id ? task : t));
-			}
 		}}
 	/>
 	<label for={task.id} class={task.completed && 'line-through'}>{task.name} </label>

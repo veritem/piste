@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { modalStore } from '$lib/stores/modal';
 	import type { Project } from '@prisma/client';
 	import Modal from './Modal.svelte';
 
@@ -29,14 +30,19 @@
 	}
 
 	export let activeProject = undefined;
-	let openAddModel = false;
+
+	let openAddModel;
+
+	modalStore.subscribe((value) => {
+		openAddModel = value;
+	});
 </script>
 
 <aside class="w-72  shadow-sm px-4  bg-primary min-h-full font-primary">
 	<button
 		class="bg-secondary w-full py-2 text-white rounded-sm"
 		on:click={() => {
-			openAddModel = true;
+			modalStore.update((value) => !value);
 		}}>Add project</button
 	>
 
@@ -59,7 +65,7 @@
 		</div>
 	{/if}
 
-	<Modal open={openAddModel}>
+	<Modal>
 		<h1 class="text-center font-bold text-2xl">Add a project</h1>
 
 		<form

@@ -1,5 +1,11 @@
-<script>
-	export let open = false;
+<script lang="ts">
+	import { modalStore } from '$lib/stores/modal';
+
+	let open = false;
+
+	modalStore.subscribe((value) => {
+		open = value;
+	});
 </script>
 
 <svelte:window
@@ -11,7 +17,7 @@
 />
 
 {#if open}
-	<div class="modal-wrapper grid place-items-center font-primary">
+	<div class="fixed w-full h-full bg-overlay top-0 left-0 grid place-items-center font-primary">
 		<div class="bg-white px-7 pt-4">
 			<div class="text-right">
 				<span
@@ -26,16 +32,3 @@
 		</div>
 	</div>
 {/if}
-
-<style>
-	/* //TODO: Modal here */
-	.modal-wrapper {
-		background-color: rgb(0, 0, 0);
-		background-color: rgba(0, 0, 0, 0.6);
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-	}
-</style>

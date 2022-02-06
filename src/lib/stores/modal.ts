@@ -1,4 +1,4 @@
 import { writable } from 'svelte/store';
 
-export const model = writable(null);
+export const modalStore = writable(false);
 export const windowStyle = writable({});

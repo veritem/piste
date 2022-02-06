@@ -1,11 +1,10 @@
 import prisma from '$lib/utils/prisma';
-import type { Request, RequestHandler } from '@sveltejs/kit';
-import type { Locals } from 'src/global';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async (request: Request<Locals>) => {
+export const get: RequestHandler = async ({ locals }) => {
 	const habits = await prisma.habit.findMany({
 		where: {
-			userId: request.locals.userId
+			userId: locals.userId
 		},
 		include: {
 			strikes: true
@@ -18,13 +17,13 @@ export const get: RequestHandler = async (request: Request<Locals>) => {
 	};
 };
 
-export const post: RequestHandler<Locals, FormData> = async (request: Request<Locals>) => {
-	const { name } = JSON.parse(request.body);
+export const post: RequestHandler = async ({ locals, request }) => {
+	const { name } = await request.json();
 
 	const habit = await prisma.habit.create({
 		data: {
 			name,
-			userId: request.locals.userId
+			userId: locals.userId
 		}
 	});
 
