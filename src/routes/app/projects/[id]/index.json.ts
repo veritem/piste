@@ -1,10 +1,10 @@
 import prisma from '$lib/utils/prisma';
 import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler = async (request) => {
+export const get: RequestHandler = async ({ params }) => {
 	let project = await prisma.project.findFirst({
 		where: {
-			id: request.params.id
+			id: params.id
 		}
 	});
 

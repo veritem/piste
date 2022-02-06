@@ -15,12 +15,9 @@ export const get: RequestHandler = async ({ locals }) => {
 		}
 	});
 
-
-
 	return { status: 404, body: tasks };
 };
 
 export const post: RequestHandler = async ({ params }) => {
-
 	return { status: 201, body: [] };
 };

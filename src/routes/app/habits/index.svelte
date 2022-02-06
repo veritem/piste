@@ -37,7 +37,7 @@
 	<title>habits</title>
 </svelte:head>
 
-<section class="py-12 px-4">
+<section class="py-12 px-4 font-primary">
 	<div class="flex justify-end">
 		<button class="bg-secondary py-4 px-6 rounded-md shadow-md" on:click={() => modal.show()}
 			>add a new habit</button

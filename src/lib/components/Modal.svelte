@@ -1,25 +1,27 @@
 <script>
-	let shown = false;
-	export function show() {
-		shown = true;
-	}
-	export function hide() {
-		shown = false;
-	}
+	export let open = false;
 </script>
 
 <svelte:window
 	on:keydown={(e) => {
 		if (e.key == 'Escape') {
-			hide();
+			open = false;
 		}
 	}}
 />
 
-{#if shown}
+{#if open}
 	<div class="modal-wrapper grid place-items-center font-primary">
-		<div class="bg-white px-7 pt-4 ">
-			<span class="close text-2xl" on:click={() => hide()}>&times;</span>
+		<div class="bg-white px-7 pt-4">
+			<div class="text-right">
+				<span
+					class="text-3xl cursor-pointer hover:font-bold"
+					on:click={() => {
+						open = false;
+					}}>&times;</span
+				>
+			</div>
+
 			<slot />
 		</div>
 	</div>
@@ -35,13 +37,5 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-	}
-
-	.close {
-		float: right;
-		cursor: pointer;
-	}
-	.close:hover {
-		font-weight: bold;
 	}
 </style>

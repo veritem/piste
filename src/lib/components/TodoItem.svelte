@@ -18,8 +18,7 @@
                           focus:ring-opacity-50"
 		checked={task.completed}
 		on:change={async () => {
-			console.log('checked: ' + task.id);
-			let resp = await fetch(`/app/projects/${task.Project.id}/tasks/${task.id}.json`, {
+			let resp = await fetch(`/app/projects/${task.projectId}/tasks/${task.id}.json`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json'
@@ -36,5 +35,5 @@
 			}
 		}}
 	/>
-	<label for={task.id} class={`${task.completed ? 'line-through' : ''}`}>{task.name} </label>
+	<label for={task.id} class={task.completed && 'line-through'}>{task.name} </label>
 </div>
