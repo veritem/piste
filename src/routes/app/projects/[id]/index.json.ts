@@ -53,3 +53,15 @@ export const put: RequestHandler = async ({ params, request }) => {
 		body: project
 	};
 };
+
+export const del: RequestHandler = async ({ params }) => {
+	await prisma.project.delete({
+		where: {
+			id: params.id
+		}
+	});
+
+	return {
+		status: 200
+	};
+};

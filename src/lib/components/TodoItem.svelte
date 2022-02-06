@@ -1,11 +1,21 @@
 <script lang="ts">
-	import { taskStore } from '$lib/stores/tasks';
+	import { invalidate } from '$app/navigation';
 	import type { Task } from '@prisma/client';
-	import { get } from 'svelte/store';
-	export let task: Task;
-	let tasks: Task[];
 
-	$: tasks = get(taskStore);
+	export let task: Task;
+
+	async function handleDelete() {
+		console.log('task: ' + task.id);
+		if (confirm('Are you sure you want to delete this task?')) {
+			const resp = await fetch(`/app/projects/${task.projectId}/tasks/${task.id}.json`, {
+				method: 'DELETE'
+			});
+
+			if (resp.ok) {
+				invalidate(`/app/projects/${task.projectId}`);
+			}
+		}
+	}
 </script>
 
 <div>
@@ -23,7 +33,6 @@
                           focus:ring-opacity-50"
 		checked={task.completed}
 		on:change={async () => {
-			tasks = tasks.map((t) => (t.id === task.id ? task : t));
 			let resp = await fetch(`/app/projects/${task.projectId}/tasks/${task.id}.json`, {
 				method: 'PATCH',
 				headers: {
@@ -34,7 +43,12 @@
 					name: task.name
 				})
 			});
+
+			if (resp.ok) {
+				invalidate(`/app/projects/${task.projectId}`);
+			}
 		}}
 	/>
-	<label for={task.id} class={task.completed && 'line-through'}>{task.name} </label>
+	<label for={task.id}>{task.name} </label>
+	<button on:click={handleDelete}>&times;</button>
 </div>

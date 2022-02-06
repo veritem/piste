@@ -15,7 +15,7 @@ module.exports = {
 			colors: {
 				secondary: '#ffd100',
 				primary: '#202020',
-				overlay: "rgba(0, 0, 0,0.5)"
+				overlay: 'rgba(0, 0, 0,0.5)'
 			}
 		},
 		fontFamily: {

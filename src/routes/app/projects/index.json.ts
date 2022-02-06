@@ -7,7 +7,7 @@ export const get: RequestHandler = async ({ locals }) => {
 			user: true
 		},
 		orderBy: {
-			createdAt: 'desc'
+			updatedAt: 'desc'
 		},
 		where: {
 			userId: locals.userId
