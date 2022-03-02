@@ -1,9 +1,9 @@
-<script>
-	import { onMount, setContext, createEventDispatcher } from 'svelte';
+<script lang="ts">
+	import { createEventDispatcher, setContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	export let x;
-	export let y;
+	export let x: number;
+	export let y: number;
 
 	// whenever x and y is changed, restrict box to be within bounds
 	$: (() => {
@@ -12,6 +12,7 @@
 		const rect = menuEl.getBoundingClientRect();
 		x = Math.min(window.innerWidth - rect.width, x);
 		if (y > window.innerHeight - rect.height) y -= rect.height;
+		//@ts-ignore
 	})(x, y);
 
 	const dispatch = createEventDispatcher();
@@ -23,14 +24,14 @@
 		}
 	);
 
-	let menuEl;
-	function onPageClick(e) {
-		if (e.target === menuEl || menuEl.contains(e.target)) return;
+	let menuEl: HTMLElement;
+	function onPageClick(e: MouseEvent) {
+		if (e.target === menuEl || menuEl.contains(e.target as HTMLInputElement)) return;
 		dispatch('clickoutside');
 	}
 </script>
 
-<svelte:body on:click={onPageClick} />
+<svelte:body on:click={() => onPageClick} />
 
 <div transition:fade={{ duration: 100 }} bind:this={menuEl} style="top: {y}px; left: {x}px;">
 	<slot />

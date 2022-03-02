@@ -1,0 +1,40 @@
+name: backup
+
+on:
+  schedule:
+    # run at 2 am every day
+    - cron: 0 2 * * *
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H')"
+      - name: Switch to backup branch
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git switch --orphan backup
+          git config pull.rebase false
+          git pull origin backup --depth 1
+      # https://askubuntu.com/questions/589210/removing-files-older-than-7-days
+      - name: Delete backups created 30 days ago
+        run: |
+          find . -type f -name "db-*.sql" -maxdepth 1 -mtime +30 -execdir rm -- '{}' \;
+      - name: Do backup
+        run: |
+          pg_dump -d $DB_NAME -h $DB_HOST -p $DB_PORT -U $DB_USER > db-${{ steps.date.outputs.date }}.sql
+        env:
+          PGPASSWORD: ${{ secrets.DB_PASS }}
+          DB_PORT: 5432
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+      - name: Commit and push
+        run: |
+          git add -A
+          git commit -m "new backup ${{ steps.date.outputs.date }}"
+          git push origin backup

@@ -20,27 +20,28 @@ model User {
 }
 
 model Project {
-  id          String   @id @default(uuid())
+  id          String        @id @default(uuid())
   name        String
   description String?
   userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   tasks       Task[]
+  status      ProjectStatus @default(ACTIVE)
 }
 
 model Task {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  Project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  Project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId String
   Sheduled  DateTime? @default(dbgenerated("NOW() + interval  ' 1 ' day"))
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   userId    String?
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  completed Boolean @default(false)
+  completed Boolean   @default(false)
 }
 
 model Habit {
@@ -71,4 +72,10 @@ model Activity {
   updatedAt DateTime @updatedAt
   Strike    Strike?  @relation(fields: [strikeId], references: [id])
   strikeId  String?
+}
+
+enum ProjectStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
 }

@@ -29,12 +29,6 @@
 		let data = await res.json();
 		alert(data.error);
 	}
-
-	let openAddModel;
-
-	modalStore.subscribe((value) => {
-		openAddModel = value;
-	});
 </script>
 
 <aside class="w-72  shadow-sm px-4  bg-primary min-h-full font-primary">

@@ -1,16 +1,11 @@
-<!-- 
-//TODO:
-	https://svelte.dev/repl/5527977f47a143c59d31c9ab3c60add5?version=3.25.0
-
--->
-<script>
+<script lang="ts">
 	import Menu from './Menu.svelte';
 	import MenuOption from './MenuOption.svelte';
 	let showMenu = false;
 
 	let pos = { x: 0, y: 0 };
 
-	async function onRightClick(e) {
+	async function onRightClick(e: MouseEvent) {
 		if (showMenu) {
 			showMenu = false;
 			await new Promise((res) => setTimeout(res, 100));

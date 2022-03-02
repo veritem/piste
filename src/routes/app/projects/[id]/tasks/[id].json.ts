@@ -24,7 +24,7 @@ export const patch: RequestHandler = async ({ params, request }) => {
 	};
 };
 
-export const del: RequestHandler = async ({ request, params }) => {
+export const del: RequestHandler = async ({ params }) => {
 	const task = await prisma.task.delete({
 		where: { id: params.id }
 	});

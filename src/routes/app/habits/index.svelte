@@ -17,20 +17,16 @@
 </script>
 
 <script lang="ts">
-	import Modal from '$lib/components/Modal.svelte';
-	import HabitStore from '$lib/stores/habits';
-	import type { Habit } from '@prisma/client';
-	import { onMount } from 'svelte';
+	import type { Habit, Strike } from '@prisma/client';
 
-	export let habits: Habit[];
+	interface HabitsProps extends Habit {
+		strikes: Strike[];
+	}
 
-	onMount(() => {
-		HabitStore.set(habits);
-	});
+	export let habits: HabitsProps[];
 
-	let modal;
-
-	let name: string;
+	//@ts-ignore
+	// let modal: Modal;
 </script>
 
 <svelte:head>
@@ -39,9 +35,7 @@
 
 <section class="py-12 px-4 font-primary">
 	<div class="flex justify-end">
-		<button class="bg-secondary py-4 px-6 rounded-md shadow-md" on:click={() => modal.show()}
-			>add a new habit</button
-		>
+		<button class="bg-secondary py-4 px-6 rounded-md shadow-md">add a new habit</button>
 	</div>
 
 	<section class="py-4 px-12 md:gap-4 gap-8 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5">
@@ -56,7 +50,7 @@
 		{/each}
 	</section>
 
-	<Modal bind:this={modal}>
+	<!-- <Modal bind:this={modal}>
 		<h1 class="capitalize font-bold mt-7">add a new habit</h1>
 
 		<form
@@ -83,5 +77,5 @@
 
 			<button class="bg-secondary py-4 px-2 rounded-sm shadow-md" type="submit">add</button>
 		</form>
-	</Modal>
+	</Modal> -->
 </section>

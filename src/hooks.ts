@@ -38,15 +38,5 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 	const response = await resolve(event);
 
-	// if (response.url.search('_method')) {
-	// 	// response
-	// 	response.method = response.url.searchParams.get('_method').toUpperCase();
-	// }
-
-	// if (response.url.search('_method')) {
-	// if (response.headers.get('method')) {
-	// 	response.headers.set = response.url.searchParams.get('_method').toUpperCase();
-	// }
-
 	return response;
 };

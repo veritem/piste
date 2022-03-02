@@ -18,9 +18,16 @@
 
 <script lang="ts">
 	import projects from '$lib/stores/projects';
-	import type { User } from '@prisma/client';
+	import type { Habit, Project, Task, User } from '@prisma/client';
 	import { onMount } from 'svelte';
-	export let user: User;
+
+	interface UserTypes extends User {
+		projects: Project[];
+		tasks: Task[];
+		habits: Habit[];
+	}
+
+	export let user: UserTypes;
 
 	onMount(() => {
 		projects.set(user?.projects);

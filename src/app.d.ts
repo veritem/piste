@@ -1,10 +1,9 @@
 /// <reference types="@sveltejs/kit" />
 
-import type { User } from '@prisma/client';
-
 declare namespace App {
 	interface Locals {
-		user: User;
+		userId: string;
+		user: import('@prisma/client').User;
 	}
 
 	interface Platform {}

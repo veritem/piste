@@ -1,4 +1,4 @@
-<script>
+<!-- <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	export let id = '';
@@ -11,9 +11,10 @@
 		options = [],
 		activeOption,
 		showOptions = false,
-		selected = {},
+		selected: { name: string; value: string } = { name: '', value: '' },
 		first = true,
 		slot;
+
 	const iconClearPath =
 		'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z';
 
@@ -30,6 +31,7 @@
 		first = false;
 	});
 
+	//@ts-ignore
 	$: if (!first) value = Object.values(selected).map((o) => o.value);
 	$: filtered = options.filter((o) =>
 		inputValue ? o.name.toLowerCase().includes(inputValue.toLowerCase()) : o
@@ -42,10 +44,11 @@
 		if (!readonly) selected[token.value] = token;
 	}
 
-	//@ts-nocheck
-	function remove(value) {
+	function remove(value: string) {
 		if (!readonly) {
+			//@ts-ignore
 			const { [value]: val, ...rest } = selected;
+			//@ts-ignore
 			selected = rest;
 		}
 	}
@@ -65,7 +68,7 @@
 	}
 
 	//@ts-ignore
-	function handleKeyup(e) {
+	function handleKeyup(e: KeyboardEvent) {
 		if (e.keyCode === 13) {
 			Object.keys(selected).includes(activeOption.value)
 				? remove(activeOption.value)
@@ -328,4 +331,4 @@
 	.hidden {
 		display: none;
 	}
-</style>
+</style> -->

@@ -9,7 +9,7 @@ export const get: RequestHandler = async ({ params }) => {
 	});
 
 	if (project) {
-		return { status: 200, body: project };
+		return { status: 200, body: { project } };
 	}
 
 	return { status: 404, body: { message: 'Project not found' } };

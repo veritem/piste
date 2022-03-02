@@ -8,7 +8,7 @@
 
 	let pos = { x: 0, y: 0 };
 
-	async function onRightClick(e) {
+	async function onRightClick(e: MouseEvent) {
 		if (showMenu) {
 			showMenu = false;
 			await new Promise((res) => setTimeout(res, 100));
@@ -32,7 +32,6 @@
 	</Menu>
 {/if}
 
-<!-- class="flex flex-col justify-center items-center w-full h-full" -->
 <a
 	href={`/app/projects/${project.id}`}
 	on:contextmenu|preventDefault={onRightClick}

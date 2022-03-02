@@ -13,14 +13,12 @@
 </script>
 
 <script lang="ts">
-	import CreateStrike from '$lib/components/CreateStrike.svelte';
-	import Modal from '$lib/components/Modal.svelte';
 	import type { Habit, Strike } from '@prisma/client';
 
 	export let habit: Habit;
 	export let strikes: Strike[];
 
-	let modal;
+	// let modal;
 </script>
 
 <svelte:head>
@@ -37,12 +35,7 @@
 	{/if}
 
 	<div class="mt-5">
-		<button
-			class="bg-secondary py-2 px-5 rounded-sm"
-			on:click={() => {
-				modal.show();
-			}}>add new strike</button
-		>
+		<button class="bg-secondary py-2 px-5 rounded-sm">add new strike</button>
 	</div>
 
 	{#if strikes.length > 1}
@@ -72,7 +65,7 @@
 		<p class="py-4 italic">No strike yet</p>
 	{/if}
 
-	<Modal bind:this={modal}>
+	<!-- <Modal bind:this={modal}>
 		<CreateStrike />
-	</Modal>
+	</Modal> -->
 </section>
