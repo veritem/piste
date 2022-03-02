@@ -22,15 +22,7 @@
 	<input
 		type="checkbox"
 		id={task.id}
-		class="rounded-full
-                          border-gray-300
-                          text-blue-600
-                          shadow-sm
-                          focus:border-blue-300
-                          focus:ring
-                          focus:ring-offset-0
-                          focus:ring-blue-200
-                          focus:ring-opacity-50"
+		class="rounded-full border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-offset-0 focus:ring-blue-200 focus:ring-opacity-50"
 		checked={task.completed}
 		on:change={async () => {
 			let resp = await fetch(`/app/projects/${task.projectId}/tasks/${task.id}.json`, {

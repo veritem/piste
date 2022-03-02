@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ProjectMenu from '$lib/shared/ProjectMenu.svelte';
 	import { modalStore } from '$lib/stores/modal';
 	import type { Project } from '@prisma/client';
 	import Modal from './Modal.svelte';
@@ -29,8 +30,6 @@
 		alert(data.error);
 	}
 
-	export let activeProject = undefined;
-
 	let openAddModel;
 
 	modalStore.subscribe((value) => {
@@ -49,14 +48,7 @@
 	{#if projects.length > 0}
 		<ul class="py-3">
 			{#each projects as project}
-				<a
-					href={`/app/projects/${project.id}`}
-					class={`py-2 px-4 rounded-sm block hover:bg-secondary text-white cursor-pointer ${
-						activeProject === project.id ? ' bg-secondary' : ''
-					}`}
-				>
-					{project.name}
-				</a>
+				<ProjectMenu {project} />
 			{/each}
 		</ul>
 	{:else}
